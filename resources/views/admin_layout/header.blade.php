@@ -18,7 +18,7 @@
                 <ul class="dropdown-menu">
                    <li class="user-footer">
                       <div>
-                         <a href="profile-edit.php" class="btn btn-default btn-flat">Edit Profile</a>
+                         <a href="{{url('admin/adminprofile')}}" class="btn btn-default btn-flat">Edit Profile</a>
                       </div>
                       <div>
                          <a href="logout.php" class="btn btn-default btn-flat">Log out</a>

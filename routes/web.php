@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SliderController;
 
 // Route::get('/', function () {
@@ -49,6 +50,11 @@ Route::get('admin/pagesettings', [AdminController::class, 'viewpagesettings']);
 Route::get('admin/socialmedia', [AdminController::class, 'viewsocialmediapage']);
 Route::get('admin/subscribers', [AdminController::class, 'viewsubscriberspage']);
 Route::get('admin/adminprofile', [AdminController::class, 'adminprofilepage']);
+
+// Services
+Route::get('admin/services', [ServiceController::class, 'getservicespage']);
+Route::get('admin/addservice', [ServiceController::class, 'addservicespage']);
+Route::get('admin/editservice', [ServiceController::class, 'editservicespage']);
 
 // Categories
 Route::get('admin/toplevelcategory', [CategoryController::class, 'viewtoplevelcategorypage']);

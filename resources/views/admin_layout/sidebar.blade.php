@@ -1,17 +1,25 @@
 <aside class="main-sidebar">
     <section class="sidebar">
        <ul class="sidebar-menu">
-          <li class="treeview active">
+          <li class="treeview {{request() -> is('admin') ? 'active' : ''}}">
              <a href="{{url('admin')}}">
              <i class="fa fa-dashboard"></i> <span>Dashboard</span>
              </a>
           </li>
-          <li class="treeview ">
+          <li class="treeview  {{request() -> is('admin/settings') ? 'active' : ''}}">
              <a href="{{url('admin/settings')}}">
              <i class="fa fa-sliders"></i> <span>Website Settings</span>
              </a>
           </li>
-          <li class="treeview ">
+          <li class="treeview  {{
+            request() -> is('admin/size') ||
+            request() -> is('admin/color') ||
+            request() -> is('admin/country') ||
+            request() -> is('admin/shippingcost') ||
+            request() -> is('admin/toplevelcategory') ||
+            request() -> is('admin/midlevelcategory') ||
+            request() -> is('admin/endlevelcategory') ? 'active' : ''
+            }}">
              <a href="#">
              <i class="fa fa-cogs"></i>
              <span>Shop Settings</span>
@@ -29,48 +37,48 @@
                 <li><a href="{{url('admin/endlevelcategory')}}"><i class="fa fa-circle-o"></i> End Level Category</a></li>
              </ul>
           </li>
-          <li class="treeview ">
+          <li class="treeview {{request() -> is('admin/products') ? 'active' : ''}}">
              <a href="{{url('admin/products')}}">
              <i class="fa fa-shopping-bag"></i> <span>Product Management</span>
              </a>
           </li>
-          <li class="treeview ">
+          <li class="treeview {{request() -> is('admin/orders') ? 'active' : ''}}">
              <a href="{{url('admin/orders')}}">
              <i class="fa fa-sticky-note"></i> <span>Order Management</span>
              </a>
           </li>
-          <li class="treeview ">
+          <li class="treeview {{request() -> is('admin/sliders') ? 'active' : ''}}">
              <a href="{{url('admin/sliders')}}">
              <i class="fa fa-picture-o"></i> <span>Manage Sliders</span>
              </a>
           </li>
           <!-- Icons to be displayed on Shop -->
-          <li class="treeview ">
-             <a href="service.php">
+          <li class="treeview {{request() -> is('admin/services') ? 'active' : ''}}">
+             <a href="{{url('admin/services')}}">
              <i class="fa fa-list-ol"></i> <span>Services</span>
              </a>
           </li>
-          <li class="treeview ">
+          <li class="treeview {{request() -> is('admin/faq') ? 'active' : ''}}">
              <a href="{{url('admin/faq')}}">
              <i class="fa fa-question-circle"></i> <span>FAQ</span>
              </a>
           </li>
-          <li class="treeview ">
+          <li class="treeview {{request() -> is('admin/registeredcustomer') ? 'active' : ''}}">
              <a href="{{url('admin/registeredcustomer')}}">
              <i class="fa fa-user-plus"></i> <span>Registered Customer</span>
              </a>
           </li>
-          <li class="treeview ">
+          <li class="treeview {{request() -> is('admin/pagesettings') ? 'active' : ''}}">
              <a href="{{url('admin/pagesettings')}}">
              <i class="fa fa-tasks"></i> <span>Page Settings</span>
              </a>
           </li>
-          <li class="treeview ">
+          <li class="treeview {{request() -> is('admin/socialmedia') ? 'active' : ''}}">
              <a href="{{url('admin/socialmedia')}}">
              <i class="fa fa-globe"></i> <span>Social Media</span>
              </a>
           </li>
-          <li class="treeview ">
+          <li class="treeview {{request() -> is('admin/subscribers') ? 'active' : ''}}">
              <a href="{{url('admin/subscribers')}}">
              <i class="fa fa-hand-o-right"></i> <span>Subscriber</span>
              </a>
