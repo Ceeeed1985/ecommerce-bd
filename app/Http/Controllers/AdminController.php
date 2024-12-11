@@ -77,5 +77,24 @@ class AdminController extends Controller
         return view ('admin.registeredcustomer');
     }
 
+    public function viewpagesettings(): View
+    {
+        return view ('admin.pagesettings');
+    }
+
+    public function viewsocialmediapage(): View
+    {
+        return view ('admin.socialmedia');
+    }
+
+    public function viewsubscriberspage(): View
+    {
+        return view ('admin.subscribers');
+    }
+
+    public function adminprofilepage(): View
+    {
+        return view ('admin.adminprofile');
+    }
 
 }

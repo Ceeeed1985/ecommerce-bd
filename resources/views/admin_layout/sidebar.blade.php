@@ -2,12 +2,12 @@
     <section class="sidebar">
        <ul class="sidebar-menu">
           <li class="treeview active">
-             <a href="index.php">
+             <a href="{{url('admin')}}">
              <i class="fa fa-dashboard"></i> <span>Dashboard</span>
              </a>
           </li>
           <li class="treeview ">
-             <a href="settings.php">
+             <a href="{{url('admin/settings')}}">
              <i class="fa fa-sliders"></i> <span>Website Settings</span>
              </a>
           </li>
@@ -20,27 +20,27 @@
              </span>
              </a>
              <ul class="treeview-menu">
-                <li><a href="size.php"><i class="fa fa-circle-o"></i> Size</a></li>
-                <li><a href="color.php"><i class="fa fa-circle-o"></i> Color</a></li>
-                <li><a href="country.php"><i class="fa fa-circle-o"></i> Country</a></li>
-                <li><a href="shipping-cost.php"><i class="fa fa-circle-o"></i> Shipping Cost</a></li>
-                <li><a href="top-category.php"><i class="fa fa-circle-o"></i> Top Level Category</a></li>
-                <li><a href="mid-category.php"><i class="fa fa-circle-o"></i> Mid Level Category</a></li>
-                <li><a href="end-category.php"><i class="fa fa-circle-o"></i> End Level Category</a></li>
+                <li><a href="{{url('admin/size')}}"><i class="fa fa-circle-o"></i> Size</a></li>
+                <li><a href="{{url('admin/color')}}"><i class="fa fa-circle-o"></i> Color</a></li>
+                <li><a href="{{url('admin/country')}}"><i class="fa fa-circle-o"></i> Country</a></li>
+                <li><a href="{{url('admin/shippingcost')}}"><i class="fa fa-circle-o"></i> Shipping Cost</a></li>
+                <li><a href="{{url('admin/toplevelcategory')}}"><i class="fa fa-circle-o"></i> Top Level Category</a></li>
+                <li><a href="{{url('admin/midlevelcategory')}}"><i class="fa fa-circle-o"></i> Mid Level Category</a></li>
+                <li><a href="{{url('admin/endlevelcategory')}}"><i class="fa fa-circle-o"></i> End Level Category</a></li>
              </ul>
           </li>
           <li class="treeview ">
-             <a href="product.php">
+             <a href="{{url('admin/products')}}">
              <i class="fa fa-shopping-bag"></i> <span>Product Management</span>
              </a>
           </li>
           <li class="treeview ">
-             <a href="order.php">
+             <a href="{{url('admin/orders')}}">
              <i class="fa fa-sticky-note"></i> <span>Order Management</span>
              </a>
           </li>
           <li class="treeview ">
-             <a href="slider.php">
+             <a href="{{url('admin/sliders')}}">
              <i class="fa fa-picture-o"></i> <span>Manage Sliders</span>
              </a>
           </li>
@@ -51,27 +51,27 @@
              </a>
           </li>
           <li class="treeview ">
-             <a href="faq.php">
+             <a href="{{url('admin/faq')}}">
              <i class="fa fa-question-circle"></i> <span>FAQ</span>
              </a>
           </li>
           <li class="treeview ">
-             <a href="customer.php">
+             <a href="{{url('admin/registeredcustomer')}}">
              <i class="fa fa-user-plus"></i> <span>Registered Customer</span>
              </a>
           </li>
           <li class="treeview ">
-             <a href="page.php">
+             <a href="{{url('admin/pagesettings')}}">
              <i class="fa fa-tasks"></i> <span>Page Settings</span>
              </a>
           </li>
           <li class="treeview ">
-             <a href="social-media.php">
+             <a href="{{url('admin/socialmedia')}}">
              <i class="fa fa-globe"></i> <span>Social Media</span>
              </a>
           </li>
           <li class="treeview ">
-             <a href="subscriber.php">
+             <a href="{{url('admin/subscribers')}}">
              <i class="fa fa-hand-o-right"></i> <span>Subscriber</span>
              </a>
           </li>

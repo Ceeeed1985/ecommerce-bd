@@ -45,6 +45,10 @@ Route::get('admin/editcountry', [AdminController::class, 'vieweditcountrypage'])
 Route::get('admin/shippingcost', [AdminController::class, 'viewshippingcostpage']);
 Route::get('admin/editshippingcost', [AdminController::class, 'vieweditshippingcostpage']);
 Route::get('admin/registeredcustomer', [AdminController::class, 'viewregisteredcustomerpage']);
+Route::get('admin/pagesettings', [AdminController::class, 'viewpagesettings']);
+Route::get('admin/socialmedia', [AdminController::class, 'viewsocialmediapage']);
+Route::get('admin/subscribers', [AdminController::class, 'viewsubscriberspage']);
+Route::get('admin/adminprofile', [AdminController::class, 'adminprofilepage']);
 
 // Categories
 Route::get('admin/toplevelcategory', [CategoryController::class, 'viewtoplevelcategorypage']);
