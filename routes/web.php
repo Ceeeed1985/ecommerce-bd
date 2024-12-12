@@ -1,19 +1,19 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ClientController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\FaqController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\ServiceController;
-use App\Http\Controllers\SliderController;
+use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ColorController;
+use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Client\ClientController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CountryController;
+use App\Http\Controllers\Admin\ShippingCostController;
+use App\Http\Controllers\Admin\SizeController;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Client
+// CLIENTS
 Route::get('/', [ClientController::class, 'viewhomepage'])->name('home');
 Route::get('/about', [ClientController::class, 'viewaboutpage']);
 Route::get('/faq', [ClientController::class, 'viewfaqpage']);
@@ -31,55 +31,79 @@ Route::get('/productbycategory', [ClientController::class, 'viewproductbycategor
 Route::get('/productdetails', [ClientController::class, 'viewproductdetailspage']);
 Route::get('/searchproduct', [ClientController::class, 'viewsearchproductpage']);
 
-// Admin
-Route::get('admin', [AdminController::class, 'viewadmindashboard']);
-Route::get('admin/settings', [AdminController::class, 'viewadminsettings']);
-Route::get('admin/size', [AdminController::class, 'viewsizepage']);
-Route::get('admin/addsize', [AdminController::class, 'viewaddsizepage']);
-Route::get('admin/editsize', [AdminController::class, 'vieweditsizepage']);
-Route::get('admin/color', [AdminController::class, 'viewcolorpage']);
-Route::get('admin/addcolor', [AdminController::class, 'viewaddcolorpage']);
-Route::get('admin/editcolor', [AdminController::class, 'vieweditcolorpage']);
-Route::get('admin/country', [AdminController::class, 'viewcountrypage']);
-Route::get('admin/addcountry', [AdminController::class, 'viewaddcountrypage']);
-Route::get('admin/editcountry', [AdminController::class, 'vieweditcountrypage']);
-Route::get('admin/shippingcost', [AdminController::class, 'viewshippingcostpage']);
-Route::get('admin/editshippingcost', [AdminController::class, 'vieweditshippingcostpage']);
-Route::get('admin/registeredcustomer', [AdminController::class, 'viewregisteredcustomerpage']);
-Route::get('admin/pagesettings', [AdminController::class, 'viewpagesettings']);
-Route::get('admin/socialmedia', [AdminController::class, 'viewsocialmediapage']);
-Route::get('admin/subscribers', [AdminController::class, 'viewsubscriberspage']);
-Route::get('admin/adminprofile', [AdminController::class, 'adminprofilepage']);
 
-// Services
-Route::get('admin/services', [ServiceController::class, 'getservicespage']);
-Route::get('admin/addservice', [ServiceController::class, 'addservicespage']);
-Route::get('admin/editservice', [ServiceController::class, 'editservicespage']);
 
-// Categories
-Route::get('admin/toplevelcategory', [CategoryController::class, 'viewtoplevelcategorypage']);
-Route::get('admin/addtoplevelcategory', [CategoryController::class, 'viewaddtoplevelcategorypage']);
-Route::get('admin/edittoplevelcategory', [CategoryController::class, 'viewedittoplevelcategorypage']);
-Route::get('admin/midlevelcategory', [CategoryController::class, 'viewmidlevelcategorypage']);
-Route::get('admin/addmidlevelcategory', [CategoryController::class, 'viewaddmidlevelcategorypage']);
-Route::get('admin/editmidlevelcategory', [CategoryController::class, 'vieweditmidlevelcategorypage']);
-Route::get('admin/endlevelcategory', [CategoryController::class, 'viewendlevelcategorypage']);
-Route::get('admin/addendlevelcategory', [CategoryController::class, 'viewaddendlevelcategorypage']);
-Route::get('admin/editendlevelcategory', [CategoryController::class, 'vieweditendlevelcategorypage']);
+// ADMIN
 
-// Products
-Route::get('admin/products', [ProductController::class, 'viewproducts']);
-Route::get('admin/addproduct', [ProductController::class, 'addproductpage']);
-Route::get('admin/editproduct', [ProductController::class, 'editproductpage']);
-Route::get('admin/orders', [ProductController::class, 'vieworders']);
+Route::prefix('admin')->name('admin.')->group(function () {
+    // Routes générales
+    Route::get('/', [AdminController::class, 'dashboard']);
+    Route::get('settings', [AdminController::class, 'settings']);
+    Route::get('registeredcustomer', [AdminController::class, 'registeredCustomers']);
+    Route::get('pagesettings', [AdminController::class, 'pageSettings']);
+    Route::get('socialmedia', [AdminController::class, 'socialMedia']);
+    Route::get('subscribers', [AdminController::class, 'subscribers']);
+    Route::get('adminprofile', [AdminController::class, 'profile']);
+    Route::get('orders', [AdminController::class, 'orders']);
 
-// Slider
-Route::get('admin/sliders', [SliderController::class, 'viewsliders']);
-Route::get('admin/editslider', [SliderController::class, 'editslider']);
-Route::get('admin/addslider', [SliderController::class, 'addslider']);
+    // Shop Settings - Size
+    Route::get('size', [SizeController::class, 'index']);
+    Route::get('addsize', [SizeController::class, 'create']);
+    Route::get('editsize', [SizeController::class, 'edit']);
 
-// Faq admin
-Route::get('admin/faq', [FaqController::class, 'viewfaq']);
-Route::get('admin/editfaq', [FaqController::class, 'editfaq']);
-Route::get('admin/addfaq', [FaqController::class, 'addfaq']);
+    // Shop Settings - Color
+    Route::get('color', [ColorController::class, 'index']);
+    Route::get('addcolor', [ColorController::class, 'create']);
+    Route::get('editcolor', [ColorController::class, 'edit']);
+
+    // Shop Settings - Country
+    Route::get('country', [CountryController::class, 'index']);
+    Route::get('addcountry', [CountryController::class, 'create']);
+    Route::get('editcountry', [CountryController::class, 'edit']);
+
+    // Shop Settings - Shipping Cost
+    Route::get('shippingcost', [ShippingCostController::class, 'index']);
+    Route::get('editshippingcost', [ShippingCostController::class, 'edit']);
+
+    // ADMIN - Categories
+    Route::prefix('category')->name('category.')->group(function () {
+        // Category Top Level
+        Route::get('toplevel', [CategoryController::class, 'indexTopLevel'])->name('toplevel.index');
+        Route::get('toplevel/create', [CategoryController::class, 'createTopLevel'])->name('toplevel.create');
+        Route::get('toplever/edit', [CategoryController::class, 'editTopLevel'])->name('toplevel.edit');
+
+        // Category Mid Level
+        Route::get('midlevel', [CategoryController::class, 'indexMidLevel'])->name('midlevel.index');
+        Route::get('midlevel/create', [CategoryController::class, 'createMidLevel'])->name('midlevel.create');
+        Route::get('midlevel/edit', [CategoryController::class, 'editMidLevel'])->name('midlevel.edit');
+
+        // Category End Level
+        Route::get('endlevel', [CategoryController::class, 'indexEndLevel'])->name('endlevel.index');
+        Route::get('endlevel/create', [CategoryController::class, 'createEndLevel'])->name('endlevel.create');
+        Route::get('endlevel/edit', [CategoryController::class, 'editEndLevel'])->name('endlevel.edit');
+    });
+
+    // Products
+    Route::get('products', [ProductController::class, 'index']);
+    Route::get('addproduct', [ProductController::class, 'create']);
+    Route::get('editproduct', [ProductController::class, 'edit']);
+
+    // ADMIN - Slider
+    Route::get('sliders', [SliderController::class, 'index']);
+    Route::get('addslider', [SliderController::class, 'create']);
+    Route::get('editslider', [SliderController::class, 'edit']);
+
+    // ADMIN - Services
+    Route::get('services', [ServiceController::class, 'index']);
+    Route::get('addservice', [ServiceController::class, 'create']);
+    Route::get('editservice', [ServiceController::class, 'edit']);
+
+    // ADMIN - Faq
+    Route::get('faq', [FaqController::class, 'index']);
+    Route::get('addfaq', [FaqController::class, 'create']);
+    Route::get('editfaq', [FaqController::class, 'edit']);
+});
+
+
+
 

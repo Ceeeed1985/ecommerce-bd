@@ -1,23 +1,24 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ServiceController extends Controller
 {
-    public function getservicespage(): View
+    public function index(): View
     {
         return view ('admin.services');
     }
 
-    public function addservicespage(): View
+    public function create(): View
     {
         return view ('admin.addservice');
     }
 
-    public function editservicespage(): View
+    public function edit(): View
     {
         return view ('admin.editservice');
     }
