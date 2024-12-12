@@ -32,9 +32,9 @@
                 <li><a href="{{url('admin/color')}}"><i class="fa fa-circle-o"></i> Color</a></li>
                 <li><a href="{{url('admin/country')}}"><i class="fa fa-circle-o"></i> Country</a></li>
                 <li><a href="{{url('admin/shippingcost')}}"><i class="fa fa-circle-o"></i> Shipping Cost</a></li>
-                <li><a href="{{url('admin/toplevelcategory')}}"><i class="fa fa-circle-o"></i> Top Level Category</a></li>
-                <li><a href="{{url('admin/midlevelcategory')}}"><i class="fa fa-circle-o"></i> Mid Level Category</a></li>
-                <li><a href="{{url('admin/endlevelcategory')}}"><i class="fa fa-circle-o"></i> End Level Category</a></li>
+                <li><a href="{{route('admin.category.toplevel.index')}}"><i class="fa fa-circle-o"></i> Top Level Category</a></li>
+                <li><a href="{{route('admin.category.midlevel.index')}}"><i class="fa fa-circle-o"></i> Mid Level Category</a></li>
+                <li><a href="{{route('admin.category.endlevel.index')}}"><i class="fa fa-circle-o"></i> End Level Category</a></li>
              </ul>
           </li>
           <li class="treeview {{request() -> is('admin/products') ? 'active' : ''}}">

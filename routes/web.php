@@ -37,14 +37,14 @@ Route::get('/searchproduct', [ClientController::class, 'viewsearchproductpage'])
 
 Route::prefix('admin')->name('admin.')->group(function () {
     // Routes générales
-    Route::get('/', [AdminController::class, 'viewadmindashboard']);
-    Route::get('settings', [AdminController::class, 'viewadminsettings']);
-    Route::get('registeredcustomer', [AdminController::class, 'viewregisteredcustomerpage']);
-    Route::get('pagesettings', [AdminController::class, 'viewpagesettings']);
-    Route::get('socialmedia', [AdminController::class, 'viewsocialmediapage']);
-    Route::get('subscribers', [AdminController::class, 'viewsubscriberspage']);
-    Route::get('adminprofile', [AdminController::class, 'adminprofilepage']);
-    Route::get('orders', [AdminController::class, 'vieworders']);
+    Route::get('/', [AdminController::class, 'dashboard']);
+    Route::get('settings', [AdminController::class, 'settings']);
+    Route::get('registeredcustomer', [AdminController::class, 'registeredCustomers']);
+    Route::get('pagesettings', [AdminController::class, 'pageSettings']);
+    Route::get('socialmedia', [AdminController::class, 'socialMedia']);
+    Route::get('subscribers', [AdminController::class, 'subscribers']);
+    Route::get('adminprofile', [AdminController::class, 'profile']);
+    Route::get('orders', [AdminController::class, 'orders']);
 
     // Shop Settings - Size
     Route::get('size', [SizeController::class, 'index']);
@@ -66,16 +66,23 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('editshippingcost', [ShippingCostController::class, 'edit']);
 
     // ADMIN - Categories
-    Route::get('toplevelcategory', [CategoryController::class, 'viewtoplevelcategorypage']);
-    Route::get('addtoplevelcategory', [CategoryController::class, 'viewaddtoplevelcategorypage']);
-    Route::get('edittoplevelcategory', [CategoryController::class, 'viewedittoplevelcategorypage']);
-    Route::get('midlevelcategory', [CategoryController::class, 'viewmidlevelcategorypage']);
-    Route::get('addmidlevelcategory', [CategoryController::class, 'viewaddmidlevelcategorypage']);
-    Route::get('editmidlevelcategory', [CategoryController::class, 'vieweditmidlevelcategorypage']);
-    Route::get('endlevelcategory', [CategoryController::class, 'viewendlevelcategorypage']);
-    Route::get('addendlevelcategory', [CategoryController::class, 'viewaddendlevelcategorypage']);
-    Route::get('editendlevelcategory', [CategoryController::class, 'vieweditendlevelcategorypage']);
-    
+    Route::prefix('category')->name('category.')->group(function () {
+        // Category Top Level
+        Route::get('toplevel', [CategoryController::class, 'indexTopLevel'])->name('toplevel.index');
+        Route::get('toplevel/create', [CategoryController::class, 'createTopLevel'])->name('toplevel.create');
+        Route::get('toplever/edit', [CategoryController::class, 'editTopLevel'])->name('toplevel.edit');
+
+        // Category Mid Level
+        Route::get('midlevel', [CategoryController::class, 'indexMidLevel'])->name('midlevel.index');
+        Route::get('midlevel/create', [CategoryController::class, 'createMidLevel'])->name('midlevel.create');
+        Route::get('midlevel/edit', [CategoryController::class, 'editMidLevel'])->name('midlevel.edit');
+
+        // Category End Level
+        Route::get('endlevel', [CategoryController::class, 'indexEndLevel'])->name('endlevel.index');
+        Route::get('endlevel/create', [CategoryController::class, 'createEndLevel'])->name('endlevel.create');
+        Route::get('endlevel/edit', [CategoryController::class, 'editEndLevel'])->name('endlevel.edit');
+    });
+
     // Products
     Route::get('products', [ProductController::class, 'index']);
     Route::get('addproduct', [ProductController::class, 'create']);

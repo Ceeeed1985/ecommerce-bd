@@ -8,42 +8,42 @@ use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
-    public function viewadmindashboard(): View
+    public function dashboard(): View
     {
         return view ('admin.dashboard');
     }
 
-    public function viewadminsettings(): View
+    public function settings(): View
     {
         return view ('admin.settings');
     }
 
-    public function viewregisteredcustomerpage(): View
+    public function registeredCustomers(): View
     {
         return view ('admin.registeredcustomer');
     }
 
-    public function viewpagesettings(): View
+    public function pageSettings(): View
     {
         return view ('admin.pagesettings');
     }
 
-    public function viewsocialmediapage(): View
+    public function socialMedia(): View
     {
         return view ('admin.socialmedia');
     }
 
-    public function viewsubscriberspage(): View
+    public function subscribers(): View
     {
         return view ('admin.subscribers');
     }
 
-    public function adminprofilepage(): View
+    public function profile(): View
     {
         return view ('admin.adminprofile');
     }
     
-    public function vieworders(): View
+    public function orders(): View
     {
         return view ('admin.orders');
     }
