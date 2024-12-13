@@ -11,15 +11,19 @@
                 <h1>Website Settings</h1>
             </div>
         </section>
+
+        @if (Session::has("status"))
         <section class="content" style="min-height:auto;margin-bottom: -30px;">
             <div class="row">
                 <div class="col-md-12">
                     <div class="callout callout-success">
-                    <p>Payment Settings is updated successfully.</p>
+                    <p>{{Session::get("status")}}</p>
                     </div>
                 </div>
             </div>
         </section>
+        @endif
+        
         <section class="content">
             <div class="row">
                 <div class="col-md-12">
@@ -38,25 +42,33 @@
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab_1">
-                            <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                            <form class="form-horizontal" action="{{ $logoimage ? url('admin/updatelogo', [$logoimage->id] ) : url('admin/savelogo')}}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                @if ($logoimage)
+                                    @method('PUT')
+                                @endif
                                 <div class="box box-info">
                                 <div class="box-body">
                                     <div class="form-group">
                                         <label for="" class="col-sm-2 control-label">Existing Photo</label>
                                         <div class="col-sm-6" style="padding-top:6px;">
-                                            <img src="{{asset('backend/uploads/logo.png')}}" class="existing-photo" style="height:80px;">
+                                            @if ($logoimage)
+                                                <img src="{{asset('storage/logoimage/'.$logoimage->photo_logo)}}" alt="{{$logoimage->photo_logo}}" class="existing-photo" style="height:80px;">
+                                            @else
+                                                <img src="{{asset('storage/defaultimage/noimage.jpg')}}" alt="Pas d'image de logo" class="existing-photo" style="height:80px;">
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="" class="col-sm-2 control-label">New Photo</label>
                                         <div class="col-sm-6" style="padding-top:6px;">
-                                            <input type="file" name="photo_logo">
+                                            <input type="file" name="photo_logo" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="" class="col-sm-2 control-label"></label>
                                         <div class="col-sm-6">
-                                            <button type="submit" class="btn btn-success pull-left" name="form1">Update Logo</button>
+                                            <button type="submit" class="btn btn-success pull-left" name="form1">{{ $logoimage ? 'Modifier le logo' : 'Enregistrer un logo'}}</button>
                                         </div>
                                     </div>
                                 </div>
@@ -64,25 +76,33 @@
                             </form>
                         </div>
                         <div class="tab-pane" id="tab_2">
-                            <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                            <form class="form-horizontal" action="{{ $favicon ? url('admin/updatefavicon', [$logoimage->id] ) : url('admin/savefavicon')}}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                @if ($favicon)
+                                    @method('PUT')
+                                @endif
                                 <div class="box box-info">
                                 <div class="box-body">
                                     <div class="form-group">
                                         <label for="" class="col-sm-2 control-label">Existing Photo</label>
                                         <div class="col-sm-6" style="padding-top:6px;">
-                                            <img src="{{asset('backend/uploads/favicon.png')}}" class="existing-photo" style="height:40px;">
+                                            @if ($favicon)
+                                                <img src="{{asset('storage/logoimage/'.$favicon->photo_favicon)}}" alt="{{$favicon->photo_favicon}}" class="existing-photo" style="height:80px;">
+                                            @else
+                                                <img src="{{asset('storage/defaultimage/noimage.jpg')}}" alt="Pas d'image de logo" class="existing-photo" style="height:80px;">
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="" class="col-sm-2 control-label">New Photo</label>
                                         <div class="col-sm-6" style="padding-top:6px;">
-                                            <input type="file" name="photo_favicon">
+                                            <input type="file" name="photo_favicon" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="" class="col-sm-2 control-label"></label>
                                         <div class="col-sm-6">
-                                            <button type="submit" class="btn btn-success pull-left" name="form2">Update Favicon</button>
+                                            <button type="submit" class="btn btn-success pull-left" name="form2">{{$favicon ? "Modifier le favicon" : "Enregistrer un favicon"}}</button>
                                         </div>
                                     </div>
                                 </div>

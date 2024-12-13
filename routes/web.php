@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CountryController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\ShippingCostController;
 use App\Http\Controllers\Admin\SizeController;
 
@@ -102,6 +103,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('faq', [FaqController::class, 'index']);
     Route::get('addfaq', [FaqController::class, 'create']);
     Route::get('editfaq', [FaqController::class, 'edit']);
+
+    // SettingController
+    Route::post('savelogo', [SettingController::class, "saveLogo"]);
+    Route::put('updatelogo/{id}', [SettingController::class, "updateLogo"]);
+    Route::post('savefavicon', [SettingController::class, "saveFavicon"]);
+    Route::put('updatefavicon/{id}', [SettingController::class, "updateFavicon"]);
 });
 
 

@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
+use App\Models\Favicon;
+use App\Models\Information;
+use App\Models\LogoImage;
 
 class AdminController extends Controller
 {
@@ -15,7 +18,14 @@ class AdminController extends Controller
 
     public function settings(): View
     {
-        return view ('admin.settings');
+        $logoimage = LogoImage::first();
+        $favicon = Favicon::first();
+        $information = Information::first();
+
+        return view ('admin.settings')
+            ->with("logoimage", $logoimage)
+            ->with("favicon", $favicon)
+            ->with("information", $information);
     }
 
     public function registeredCustomers(): View
