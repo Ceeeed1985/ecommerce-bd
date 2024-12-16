@@ -527,15 +527,12 @@
                                         @method('PUT')
                                     @endif
                                     <td style="width:50%">
-                                        <h4>Existing Login Page Banner</h4>
+                                        <h4>Vos bannières</h4>
                                         @if ($banner)
                                                 <p><img src="{{asset('storage/banner/'.$banner->photo)}}" alt="{{$banner->photo}}" style="width: 100%;height:auto;"></p>
                                             @else
                                                 <p><img src="{{asset('storage/defaultimage/noimage.jpg')}}" alt="Pas d'image de logo" style="width: 100%;height:auto;"></p>
                                             @endif
-                                        {{-- <p>
-                                            <img src="{{asset('backend/uploads/banner_login.jpg')}}" alt="" style="width: 100%;height:auto;"> 
-                                        </p> --}}
                                     </td>
                                     <td style="width:50%">
                                         <h4>Change Login Page Banner</h4>
@@ -544,137 +541,33 @@
                                     </td>
                                 </form>
                                 </tr>
-                                <tr>
-                                <form action="" method="post" enctype="multipart/form-data">
-                                    <td style="width:50%">
-                                        <h4>Existing Registration Page Banner</h4>
-                                        <p>
-                                            <img src="{{asset('backend/uploads/banner_registration.jpg')}}" alt="" style="width: 100%;height:auto;">  
-                                        </p>
-                                    </td>
-                                    <td style="width:50%">
-                                        <h4>Change Registration Page Banner</h4>
-                                        Select Photo<input type="file" name="photo">
-                                        <input type="submit" class="btn btn-primary btn-xs" value="Change" style="margin-top:10px;" name="form7_2">
-                                    </td>
-                                </form>
-                                </tr>
-                                <tr>
-                                <form action="" method="post" enctype="multipart/form-data">
-                                    <td style="width:50%">
-                                        <h4>Existing Forget Password Page Banner</h4>
-                                        <p>
-                                            <img src="{{asset('backend/uploads/banner_forget_password.jpg')}}" alt="" style="width: 100%;height:auto;">   
-                                        </p>
-                                    </td>
-                                    <td style="width:50%">
-                                        <h4>Change Forget Password Page Banner</h4>
-                                        Select Photo<input type="file" name="photo">
-                                        <input type="submit" class="btn btn-primary btn-xs" value="Change" style="margin-top:10px;" name="form7_3">
-                                    </td>
-                                </form>
-                                </tr>
-                                <tr>
-                                <form action="" method="post" enctype="multipart/form-data">
-                                    <td style="width:50%">
-                                        <h4>Existing Reset Password Page Banner</h4>
-                                        <p>
-                                            <img src="{{asset('backend/uploads/banner_reset_password.jpg')}}" alt="" style="width: 100%;height:auto;">   
-                                        </p>
-                                    </td>
-                                    <td style="width:50%">
-                                        <h4>Change Reset Password Page Banner</h4>
-                                        Select Photo<input type="file" name="photo">
-                                        <input type="submit" class="btn btn-primary btn-xs" value="Change" style="margin-top:10px;" name="form7_4">
-                                    </td>
-                                </form>
-                                </tr>
-                                <tr>
-                                <form action="" method="post" enctype="multipart/form-data">
-                                    <td style="width:50%">
-                                        <h4>Existing Search Page Banner</h4>
-                                        <p>
-                                            <img src="{{asset('backend/uploads/banner_search.jpg')}}" alt="" style="width: 100%;height:auto;">  
-                                        </p>
-                                    </td>
-                                    <td style="width:50%">
-                                        <h4>Change Search Page Banner</h4>
-                                        Select Photo<input type="file" name="photo">
-                                        <input type="submit" class="btn btn-primary btn-xs" value="Change" style="margin-top:10px;" name="form7_6">
-                                    </td>
-                                </form>
-                                </tr>
-                                <tr>
-                                <form action="" method="post" enctype="multipart/form-data">
-                                    <td style="width:50%">
-                                        <h4>Existing Cart Page Banner</h4>
-                                        <p>
-                                            <img src="{{asset('backend/uploads/banner_cart.jpg')}}" alt="" style="width: 100%;height:auto;">  
-                                        </p>
-                                    </td>
-                                    <td style="width:50%">
-                                        <h4>Change Cart Page Banner</h4>
-                                        Select Photo<input type="file" name="photo">
-                                        <input type="submit" class="btn btn-primary btn-xs" value="Change" style="margin-top:10px;" name="form7_7">
-                                    </td>
-                                </form>
-                                </tr>
-                                <tr>
-                                <form action="" method="post" enctype="multipart/form-data">
-                                    <td style="width:50%">
-                                        <h4>Existing Checkout Page Banner</h4>
-                                        <p>
-                                            <img src="{{asset('backend/uploads/banner_checkout.jpg')}}" alt="" style="width: 100%;height:auto;">  
-                                        </p>
-                                    </td>
-                                    <td style="width:50%">
-                                        <h4>Change Checkout Page Banner</h4>
-                                        Select Photo<input type="file" name="photo">
-                                        <input type="submit" class="btn btn-primary btn-xs" value="Change" style="margin-top:10px;" name="form7_8">
-                                    </td>
-                                </form>
-                                </tr>
-                                <tr>
-                                <form action="" method="post" enctype="multipart/form-data">
-                                    <td style="width:50%">
-                                        <h4>Existing Product Category Page Banner</h4>
-                                        <p>
-                                            <img src="{{asset('backend/uploads/banner_product_category.jpg')}}" alt="" style="width: 100%;height:auto;">  
-                                        </p>
-                                    </td>
-                                    <td style="width:50%">
-                                        <h4>Change Product Category Page Banner</h4>
-                                        Select Photo<input type="file" name="photo">
-                                        <input type="submit" class="btn btn-primary btn-xs" value="Change" style="margin-top:10px;" name="form7_9">
-                                    </td>
-                                </form>
-                                </tr>
                             </table>
                         </div>
                         <!-- PAYMENT METHODS TAB -->
                         <div class="tab-pane" id="tab_9">
-                            <form class="form-horizontal" action="" method="post">
+                            <form class="form-horizontal" action="{{$paymentSetting ? url("admin/updatePaymentSetting", [$paymentSetting->id]) : url("admin/savePaymentSetting")}}" method="post">
+                                @csrf
+                                @if($paymentSetting)
+                                    @method('PUT')
+                                @endif
                                 <div class="box box-info">
                                 <div class="box-body">
                                     <div class="form-group">
                                         <label for="" class="col-sm-2 control-label">PayPal - Business Email </label>
                                         <div class="col-sm-5">
-                                            <input type="text" name="paypal_email" class="form-control" value="admin@ecom.com">
+                                            <input type="text" name="paypal_email" class="form-control" value="{{$paymentSetting ? $paymentSetting->paypal_email : ""}}">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="" class="col-sm-2 control-label">Bank Information </label>
                                         <div class="col-sm-5">
-                                            <textarea name="bank_detail" class="form-control" cols="30" rows="10">Bank Name: WestView Bank
-                                            Account Number: CA100270589600
-                                            Branch Name: CA Branch
-                                            Country: USA</textarea>
+                                            <textarea name="bank_detail" class="form-control" cols="30" rows="10">{{$paymentSetting ? $paymentSetting->bank_detail : ""}}</textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="" class="col-sm-2 control-label"></label>
                                         <div class="col-sm-6">
-                                            <button type="submit" class="btn btn-success pull-left" name="form9">Update</button>
+                                            <button type="submit" class="btn btn-success pull-left" name="form9">{{$paymentSetting ? "Mettre à jour" : "Enregistrer"}}</button>
                                         </div>
                                     </div>
                                 </div>

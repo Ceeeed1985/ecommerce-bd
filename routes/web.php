@@ -140,6 +140,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::post('saveBanner', [SettingController::class, 'saveBanner']);
     Route::put('updateBanner/{id}', [SettingController::class, 'updateBanner']);
+
+    Route::post('savePaymentSetting', [SettingController::class, 'savePaymentSetting']);
+    Route::put('updatePaymentSetting/{id}', [SettingController::class, 'updatePaymentSetting']);
+
 });
 
 

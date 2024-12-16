@@ -15,6 +15,7 @@ use App\Models\FeaturedProduct;
 use App\Models\NewsletterSection;
 use App\Http\Controllers\Controller;
 use App\Models\LatestProductSection;
+use App\Models\PaymentSetting;
 use App\Models\PopularProductSection;
 use Illuminate\Support\Facades\Storage;
 
@@ -469,6 +470,36 @@ class SettingController extends Controller
     $banner->update();
 
     return back()->with("status", "Votre bannière a été mise à jour avec succès !");
+   }
+
+   public function savePaymentSetting(Request $request){
+        $this->validate($request, [
+            'paypal_email'  => 'required',
+            'bank_detail'   => 'required'
+        ]);
+
+        $paymentSetting = new PaymentSetting();
+        $paymentSetting->paypal_email = $request->input("paypal_email");
+        $paymentSetting->bank_detail = $request->input("bank_detail");
+
+        $paymentSetting->save();
+
+        return back()->with("status", "Vos informations de payements ont bien été enregistrées !");
+   }
+
+   public function updatePaymentSetting(Request $request, $id){
+        $this->validate($request, [
+            'paypal_email'  => 'required',
+            'bank_detail'   => 'required'
+        ]);
+
+        $paymentSetting = PaymentSetting::find($id);
+        $paymentSetting->paypal_email = $request->input("paypal_email");
+        $paymentSetting->bank_detail = $request->input("bank_detail");
+
+        $paymentSetting->update();
+
+        return back()->with("status", "Vos informations de payements ont bien été mises à jour !");
    }
 
 }

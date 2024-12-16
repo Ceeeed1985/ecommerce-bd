@@ -16,6 +16,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use App\Models\LatestProductSection;
 use App\Models\NewsletterSection;
+use App\Models\PaymentSetting;
 use App\Models\PopularProductSection;
 
 class AdminController extends Controller
@@ -39,6 +40,7 @@ class AdminController extends Controller
         $popularProductSection = PopularProductSection::first();
         $newsletterSection = NewsletterSection::first();
         $banner = Banner::first();
+        $paymentSetting = PaymentSetting::first();
 
         return view ('admin.settings')
             ->with("logoimage", $logoimage)
@@ -52,7 +54,8 @@ class AdminController extends Controller
             ->with("latestProductSection", $latestProductSection)
             ->with("popularProductSection", $popularProductSection)
             ->with("newsletterSection", $newsletterSection)
-            ->with("banner", $banner);
+            ->with("banner", $banner)
+            ->with("paymentSetting", $paymentSetting);
     }
 
     public function registeredCustomers(): View
