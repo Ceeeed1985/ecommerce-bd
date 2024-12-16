@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Favicon;
+use App\Models\Information;
 use App\Models\LogoImage;
 use Illuminate\Support\Facades\Storage;
 
@@ -95,5 +96,54 @@ class SettingController extends Controller
         return back()->with("status", 'Le Favicon a bien été mis à jour !!!');
 
     }
+
+    public function saveInformation(Request $request){
+        $this->validate($request, [
+            'newsletter_on_off' => 'required',
+            'footer_copyright' => 'required',
+            'contact_address' => 'required',
+            'contact_email' => 'required',
+            'contact_phone' => 'required',
+            'contact_map_iframe' => 'required'
+        ]);
+
+        $information = new Information();
+        $information->newsletter_on_off = $request->input('newsletter_on_off');
+        $information->footer_copyright = $request->input('footer_copyright');
+        $information->contact_address = $request->input('contact_address');
+        $information->contact_email = $request->input('contact_email');
+        $information->contact_phone = $request->input('contact_phone');
+        $information->contact_map_iframe = $request->input('contact_map_iframe');
+
+        $information->save();
+
+        return back()->with("status", "Les informations ont été encodées avec succès !!");
+
+    }
+
+    public function updateInformation(Request $request, $id){
+        $this->validate($request, [
+            'newsletter_on_off' => 'required',
+            'footer_copyright' => 'required',
+            'contact_address' => 'required',
+            'contact_email' => 'required',
+            'contact_phone' => 'required',
+            'contact_map_iframe' => 'required'
+        ]);
+
+        $information = Information::find($id);
+        $information->newsletter_on_off = $request->input('newsletter_on_off');
+        $information->footer_copyright = $request->input('footer_copyright');
+        $information->contact_address = $request->input('contact_address');
+        $information->contact_email = $request->input('contact_email');
+        $information->contact_phone = $request->input('contact_phone');
+        $information->contact_map_iframe = $request->input('contact_map_iframe');
+
+        $information->update();
+
+        return back()->with("status", "Les informations ont été mises à jour avec succès !!");
+
+    }
+
 
 }

@@ -109,6 +109,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::put('updatelogo/{id}', [SettingController::class, "updateLogo"]);
     Route::post('savefavicon', [SettingController::class, "saveFavicon"]);
     Route::put('updatefavicon/{id}', [SettingController::class, "updateFavicon"]);
+
+    Route::post('saveinformation', [SettingController::class, "saveInformation"]);
+    Route::put('updateinformation/{id}', [SettingController::class, "updateInformation"]);
+
 });
 
 
