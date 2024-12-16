@@ -372,31 +372,35 @@
                                 </div>
                             </form>
                             <h3>Meta Section</h3>
-                            <form class="form-horizontal" action="" method="post">
+                            <form class="form-horizontal" action="{{$metaSection ? url("admin/updateMetaSection", [$metaSection->id]) : url("admin/saveMetaSection")}}" method="post">
+                                @csrf
+                                @if($metaSection)
+                                    @method('PUT')
+                                @endif
                                 <div class="box box-info">
                                 <div class="box-body">
                                     <div class="form-group">
                                         <label for="" class="col-sm-3 control-label">Meta Title </label>
                                         <div class="col-sm-8">
-                                            <input type="text" name="meta_title_home" class="form-control" value="Ecommerce PHP">
+                                            <input type="text" name="meta_title_home" class="form-control" value="{{$metaSection ? $metaSection->meta_title_home : "" }}" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="" class="col-sm-3 control-label">Meta Keyword </label>
                                         <div class="col-sm-8">
-                                            <textarea class="form-control" name="meta_keyword_home" style="height:100px;">online fashion store, garments shop, online garments</textarea>
+                                            <textarea class="form-control" name="meta_keyword_home" style="height:100px;" required>{{$metaSection ? $metaSection->meta_keyword_home : "" }}</textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="" class="col-sm-3 control-label">Meta Description </label>
                                         <div class="col-sm-8">
-                                            <textarea class="form-control" name="meta_description_home" style="height:200px;">ecommerce php project with mysql database</textarea>
+                                            <textarea class="form-control" name="meta_description_home" style="height:200px;" required>{{$metaSection ? $metaSection->meta_description_home : "" }}</textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="" class="col-sm-3 control-label"></label>
                                         <div class="col-sm-6">
-                                            <button type="submit" class="btn btn-success pull-left" name="form6">Update</button>
+                                            <button type="submit" class="btn btn-success pull-left" name="form6">{{$metaSection ? "Mettre à jour" : "Enregistrer"}}</button>
                                         </div>
                                     </div>
                                 </div>

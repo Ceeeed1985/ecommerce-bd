@@ -123,6 +123,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('saveonoffsection', [SettingController::class, "saveOnOffSection"]);
     Route::put('updateonoffsection/{id}', [SettingController::class, "updateOnOffSection"]);
 
+    Route::post('saveMetaSection', [SettingController::class, "saveMetaSection"]);
+    Route::put('updateMetaSection/{id}', [SettingController::class, "updateMetaSection"]);
 });
 
 

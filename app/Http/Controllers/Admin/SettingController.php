@@ -8,6 +8,7 @@ use App\Models\Favicon;
 use App\Models\Information;
 use App\Models\LogoImage;
 use App\Models\Message;
+use App\Models\MetaSection;
 use App\Models\OnOffSection;
 use App\Models\ProductSetting;
 use Illuminate\Support\Facades\Storage;
@@ -266,6 +267,40 @@ class SettingController extends Controller
         $onOffSection->update();
 
         return back()->with("status", "Vos sections ont été mises à jour avec succès !");
+    }
+
+    public function saveMetaSection(Request $request){
+        $this->validate($request, [
+            'meta_title_home' => 'required',
+            'meta_keyword_home' => 'required',
+            'meta_description_home' => 'required'
+        ]);
+
+        $metaSection = new MetaSection();
+        $metaSection->meta_title_home = $request->input('meta_title_home');
+        $metaSection->meta_keyword_home = $request->input('meta_keyword_home');
+        $metaSection->meta_description_home = $request->input('meta_description_home');
+
+        $metaSection->save();
+
+        return back()->with("status", "Vos métasections ont bien étés enregistrées !");
+    }
+
+    public function updateMetaSection(Request $request, $id){
+        $this->validate($request, [
+            'meta_title_home' => 'required',
+            'meta_keyword_home' => 'required',
+            'meta_description_home' => 'required'
+        ]);
+
+        $metaSection = MetaSection::find($id);
+        $metaSection->meta_title_home = $request->input('meta_title_home');
+        $metaSection->meta_keyword_home = $request->input('meta_keyword_home');
+        $metaSection->meta_description_home = $request->input('meta_description_home');
+
+        $metaSection->update();
+
+        return back()->with("status", "Vos métasections ont bien étés mises à jour !");
     }
 
 }
