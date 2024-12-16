@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Favicon;
 use App\Models\FeaturedProduct;
 use App\Models\Information;
+use App\Models\LatestProductSection;
 use App\Models\LogoImage;
 use App\Models\Message;
 use App\Models\MetaSection;
@@ -334,7 +335,34 @@ class SettingController extends Controller
         return back()->with("status", "Vos préférences pour la section des produits phares ont été mises à jour !");
     }
 
-   
+   public function saveLatestProductSection(Request $request){
+    $this->validate($request, [
+        'latest_product_title' => 'required',
+        'latest_product_subtitle' => 'required'
+    ]);
 
+    $latestProductSection = new LatestProductSection();
+    $latestProductSection->latest_product_title = $request->input('latest_product_title');
+    $latestProductSection->latest_product_subtitle = $request->input('latest_product_subtitle');
+
+    $latestProductSection->save();
+
+    return back()->with("status", "Vos préférences pour la section des derniers produits ont bien été enregistrées !");
+   }
+
+   public function updateLatestProductSection(Request $request, $id){
+    $this->validate($request, [
+        'latest_product_title' => 'required',
+        'latest_product_subtitle' => 'required'
+    ]);
+
+    $latestProductSection = LatestProductSection::find($id);
+    $latestProductSection->latest_product_title = $request->input('latest_product_title');
+    $latestProductSection->latest_product_subtitle = $request->input('latest_product_subtitle');
+
+    $latestProductSection->update();
+
+    return back()->with("status", "Vos préférences pour la section des derniers produits ont bien été mises à jour !");
+   }
 
 }

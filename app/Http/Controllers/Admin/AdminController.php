@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use Illuminate\Contracts\View\View;
-use App\Http\Controllers\Controller;
 use App\Models\Favicon;
-use App\Models\FeaturedProduct;
-use App\Models\Information;
-use App\Models\LogoImage;
 use App\Models\Message;
+use App\Models\LogoImage;
+use App\Models\Information;
 use App\Models\MetaSection;
 use App\Models\OnOffSection;
+use Illuminate\Http\Request;
 use App\Models\ProductSetting;
+use App\Models\FeaturedProduct;
+use Illuminate\Contracts\View\View;
+use App\Http\Controllers\Controller;
+use App\Models\LatestProductSection;
 
 class AdminController extends Controller
 {
@@ -31,6 +32,7 @@ class AdminController extends Controller
         $onOffSection = OnOffSection::first();
         $metaSection = MetaSection::first();
         $featuredProduct = FeaturedProduct::first();
+        $latestProductSection = LatestProductSection::first();
 
         return view ('admin.settings')
             ->with("logoimage", $logoimage)
@@ -40,7 +42,8 @@ class AdminController extends Controller
             ->with("productSetting", $productSetting)
             ->with("onOffSection", $onOffSection)
             ->with("metaSection", $metaSection)
-            ->with("featuredProduct", $featuredProduct);
+            ->with("featuredProduct", $featuredProduct)
+            ->with("latestProductSection", $latestProductSection);
     }
 
     public function registeredCustomers(): View

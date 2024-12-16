@@ -437,25 +437,29 @@
                                 </div>
                             </form>
                             <h3>Latest Product Section</h3>
-                            <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                            <form class="form-horizontal" action="{{$latestProductSection ? url("admin/updateLatestProductSection", [$latestProductSection->id]) : url("admin/saveLatestProductSection")}}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                @if($latestProductSection)
+                                    @method('Put')
+                                @endif
                                 <div class="box box-info">
                                 <div class="box-body">
                                     <div class="form-group">
                                         <label for="" class="col-sm-3 control-label">Latest Product Title<span>*</span></label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" name="latest_product_title" value="Latest Products">
+                                            <input type="text" class="form-control" name="latest_product_title" value="{{$latestProductSection ? $latestProductSection->latest_product_title : ""}}" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="" class="col-sm-3 control-label">Latest Product SubTitle<span>*</span></label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" name="latest_product_subtitle" value="Our list of recently added products">
+                                            <input type="text" class="form-control" name="latest_product_subtitle" value="{{$latestProductSection ? $latestProductSection->latest_product_subtitle : ""}}" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="" class="col-sm-3 control-label"></label>
                                         <div class="col-sm-6">
-                                            <button type="submit" class="btn btn-success pull-left" name="form6_5">Update</button>
+                                            <button type="submit" class="btn btn-success pull-left" name="form6_5">{{$latestProductSection ? "Mettre à jour" : "Enregistrer"}}</button>
                                         </div>
                                     </div>
                                 </div>
