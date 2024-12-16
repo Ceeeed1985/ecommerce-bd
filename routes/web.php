@@ -120,6 +120,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('saveproductsetting', [SettingController::class, "saveProductSetting"]);
     Route::put('updateproductsetting/{id}', [SettingController::class, "updateProductSetting"]);
 
+    Route::post('saveonoffsection', [SettingController::class, "saveOnOffSection"]);
+    Route::put('updateonoffsection/{id}', [SettingController::class, "updateOnOffSection"]);
+
 });
 
 

@@ -9,6 +9,7 @@ use App\Models\Favicon;
 use App\Models\Information;
 use App\Models\LogoImage;
 use App\Models\Message;
+use App\Models\OnOffSection;
 use App\Models\ProductSetting;
 
 class AdminController extends Controller
@@ -25,13 +26,15 @@ class AdminController extends Controller
         $information = Information::first();
         $message = Message::first();
         $productSetting = ProductSetting::first();
+        $onOffSection = OnOffSection::first();
 
         return view ('admin.settings')
             ->with("logoimage", $logoimage)
             ->with("favicon", $favicon)
             ->with("information", $information)
             ->with("message", $message)
-            ->with("productSetting", $productSetting);
+            ->with("productSetting", $productSetting)
+            ->with("onOffSection", $onOffSection);
     }
 
     public function registeredCustomers(): View

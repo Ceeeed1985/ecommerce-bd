@@ -8,6 +8,7 @@ use App\Models\Favicon;
 use App\Models\Information;
 use App\Models\LogoImage;
 use App\Models\Message;
+use App\Models\OnOffSection;
 use App\Models\ProductSetting;
 use Illuminate\Support\Facades\Storage;
 
@@ -223,5 +224,48 @@ class SettingController extends Controller
 
     }
 
+    public function saveOnOffSection(Request $request){
+        $this->validate($request, [
+            'home_service_on_off'           => 'required',
+            'home_welcome_on_off'           => 'required',
+            'home_featured_product_on_off'  => 'required',
+            'home_latest_product_on_off'    => 'required',
+            'home_popular_product_on_off'   => 'required'
+        ]);
+
+        $onOffSection = new OnOffSection();
+
+        $onOffSection->home_service_on_off = $request->input('home_service_on_off');
+        $onOffSection->home_welcome_on_off = $request->input('home_welcome_on_off');
+        $onOffSection->home_featured_product_on_off = $request->input('home_featured_product_on_off');
+        $onOffSection->home_latest_product_on_off = $request->input('home_latest_product_on_off');
+        $onOffSection->home_popular_product_on_off = $request->input('home_popular_product_on_off');
+
+        $onOffSection->save();
+
+        return back()->with("status", "Vos sections ont été ajoutées avec succès !");
+    }
+
+    public function updateOnOffSection(Request $request, $id){
+        $this->validate($request, [
+            'home_service_on_off'           => 'required',
+            'home_welcome_on_off'           => 'required',
+            'home_featured_product_on_off'  => 'required',
+            'home_latest_product_on_off'    => 'required',
+            'home_popular_product_on_off'   => 'required'
+        ]);
+
+        $onOffSection = OnOffSection::find($id);
+
+        $onOffSection->home_service_on_off = $request->input('home_service_on_off');
+        $onOffSection->home_welcome_on_off = $request->input('home_welcome_on_off');
+        $onOffSection->home_featured_product_on_off = $request->input('home_featured_product_on_off');
+        $onOffSection->home_latest_product_on_off = $request->input('home_latest_product_on_off');
+        $onOffSection->home_popular_product_on_off = $request->input('home_popular_product_on_off');
+
+        $onOffSection->update();
+
+        return back()->with("status", "Vos sections ont été mises à jour avec succès !");
+    }
 
 }
