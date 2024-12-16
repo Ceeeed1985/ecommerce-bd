@@ -11,6 +11,7 @@ use App\Models\LatestProductSection;
 use App\Models\LogoImage;
 use App\Models\Message;
 use App\Models\MetaSection;
+use App\Models\NewsletterSection;
 use App\Models\OnOffSection;
 use App\Models\PopularProductSection;
 use App\Models\ProductSetting;
@@ -373,7 +374,7 @@ class SettingController extends Controller
     ]);
 
     $popularProductSection = new PopularProductSection();
-    
+
     $popularProductSection->popular_product_title = $request->input('popular_product_title');
     $popularProductSection->popular_product_subtitle = $request->input('popular_product_subtitle');
 
@@ -397,6 +398,32 @@ class SettingController extends Controller
     $popularProductSection->update();
 
     return back()->with("status", "Vos préférences pour la section des produits les plus populaires ont bien été mises à jour !");
+
+   }
+
+   public function saveNewsletterSection(Request $request){
+    $this->validate($request, [
+        'newsletter_text'   => 'required'
+    ]);
+
+    $newsletterSection = new NewsletterSection();
+    $newsletterSection->newsletter_text = $request->input('newsletter_text');
+    $newsletterSection->save();
+
+    return back()->with("status", "Vos préférences pour la Section Newsletter ont bien été enregistrées !");
+
+   }
+
+   public function updateNewsletterSection(Request $request, $id){
+    $this->validate($request, [
+        'newsletter_text'   => 'required'
+    ]);
+
+    $newsletterSection = NewsletterSection::find($id);
+    $newsletterSection->newsletter_text = $request->input('newsletter_text');
+    $newsletterSection->update();
+
+    return back()->with("status", "Vos préférences pour la Section Newsletter ont bien été mises à jour !");
 
    }
 

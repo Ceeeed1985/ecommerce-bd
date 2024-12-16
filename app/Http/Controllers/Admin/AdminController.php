@@ -14,6 +14,7 @@ use App\Models\FeaturedProduct;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
 use App\Models\LatestProductSection;
+use App\Models\NewsletterSection;
 use App\Models\PopularProductSection;
 
 class AdminController extends Controller
@@ -35,6 +36,7 @@ class AdminController extends Controller
         $featuredProduct = FeaturedProduct::first();
         $latestProductSection = LatestProductSection::first();
         $popularProductSection = PopularProductSection::first();
+        $newsletterSection = NewsletterSection::first();
 
         return view ('admin.settings')
             ->with("logoimage", $logoimage)
@@ -46,7 +48,8 @@ class AdminController extends Controller
             ->with("metaSection", $metaSection)
             ->with("featuredProduct", $featuredProduct)
             ->with("latestProductSection", $latestProductSection)
-            ->with("popularProductSection", $popularProductSection);
+            ->with("popularProductSection", $popularProductSection)
+            ->with("newsletterSection", $newsletterSection);
     }
 
     public function registeredCustomers(): View

@@ -408,7 +408,7 @@
                             </form>
                             
                             <h3>Featured Product Section</h3>
-                            <form class="form-horizontal" action="{{$featuredProduct ? url("admin/updateFeaturedProduct", [$featuredProduct->id]) : url("admin/saveFeaturedProduct")}}" method="post" enctype="multipart/form-data">
+                            <form class="form-horizontal" action="{{$featuredProduct ? url("admin/updateFeaturedProduct", [$featuredProduct->id]) : url("admin/saveFeaturedProduct")}}" method="post"">
                                 @csrf
                                 @if($featuredProduct)
                                     @method('PUT')
@@ -437,7 +437,7 @@
                                 </div>
                             </form>
                             <h3>Latest Product Section</h3>
-                            <form class="form-horizontal" action="{{$latestProductSection ? url("admin/updateLatestProductSection", [$latestProductSection->id]) : url("admin/saveLatestProductSection")}}" method="post" enctype="multipart/form-data">
+                            <form class="form-horizontal" action="{{$latestProductSection ? url("admin/updateLatestProductSection", [$latestProductSection->id]) : url("admin/saveLatestProductSection")}}" method="post"">
                                 @csrf
                                 @if($latestProductSection)
                                     @method('Put')
@@ -476,13 +476,13 @@
                                     <div class="form-group">
                                         <label for="" class="col-sm-3 control-label">Popular Product Title<span>*</span></label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" name="popular_product_title" value="{{$popularProductSection ? $popularProductSection->popular_product_title : ""}}">
+                                            <input type="text" class="form-control" name="popular_product_title" value="{{$popularProductSection ? $popularProductSection->popular_product_title : ""}}" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="" class="col-sm-3 control-label">Popular Product SubTitle<span>*</span></label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" name="popular_product_subtitle" value="{{$popularProductSection ? $popularProductSection->popular_product_subtitle : ""}}">
+                                            <input type="text" class="form-control" name="popular_product_subtitle" value="{{$popularProductSection ? $popularProductSection->popular_product_subtitle : ""}}" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -495,19 +495,23 @@
                                 </div>
                             </form>
                             <h3>Newsletter Section</h3>
-                            <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                            <form class="form-horizontal" action="{{$newsletterSection ? url("admin/updateNewsletterSection", [$newsletterSection->id]) : url("admin/saveNewsletterSection")}}" method="post">
+                                @csrf
+                                @if($newsletterSection)
+                                    @method('PUT')
+                                @endif
                                 <div class="box box-info">
                                 <div class="box-body">
                                     <div class="form-group">
                                         <label for="" class="col-sm-3 control-label">Newsletter Text</label>
                                         <div class="col-sm-8">
-                                            <textarea name="newsletter_text" class="form-control" cols="30" rows="10" style="height: 120px;">Sign-up to our newsletter for latest promotions and discounts.</textarea>
+                                            <textarea name="newsletter_text" class="form-control" cols="30" rows="10" style="height: 120px;" required>{{$newsletterSection ? $newsletterSection->newsletter_text : ""}}</textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="" class="col-sm-3 control-label"></label>
                                         <div class="col-sm-6">
-                                            <button type="submit" class="btn btn-success pull-left" name="form6_3">Update</button>
+                                            <button type="submit" class="btn btn-success pull-left" name="form6_3">{{$newsletterSection ? "Mettre à jour" : "Enregistrer"}}</button>
                                         </div>
                                     </div>
                                 </div>
