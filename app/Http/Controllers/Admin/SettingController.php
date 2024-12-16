@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Favicon;
 use App\Models\Information;
 use App\Models\LogoImage;
+use App\Models\Message;
 use Illuminate\Support\Facades\Storage;
 
 class SettingController extends Controller
@@ -123,12 +124,12 @@ class SettingController extends Controller
 
     public function updateInformation(Request $request, $id){
         $this->validate($request, [
-            'newsletter_on_off' => 'required',
-            'footer_copyright' => 'required',
-            'contact_address' => 'required',
-            'contact_email' => 'required',
-            'contact_phone' => 'required',
-            'contact_map_iframe' => 'required'
+            'newsletter_on_off'     => 'required',
+            'footer_copyright'      => 'required',
+            'contact_address'       => 'required',
+            'contact_email'         => 'required',
+            'contact_phone'         => 'required',
+            'contact_map_iframe'    => 'required'
         ]);
 
         $information = Information::find($id);
@@ -142,6 +143,46 @@ class SettingController extends Controller
         $information->update();
 
         return back()->with("status", "Les informations ont été mises à jour avec succès !!");
+
+    }
+
+    public function saveMessage(Request $request){
+        $this->validate($request, [
+            'receive_email'                     => 'required',
+            'receive_email_subject'             => 'required',
+            'receive_email_thank_you_message'   => 'required',
+            'forget_password_message'           => 'required'
+        ]);
+
+        $message = new Message();
+        $message->receive_email = $request->input('receive_email');
+        $message->receive_email_subject = $request->input('receive_email_subject');
+        $message->receive_email_thank_you_message = $request->input('receive_email_thank_you_message');
+        $message->forget_password_message = $request->input('forget_password_message');
+
+        $message->save();
+
+        return back()->with("status", "Vos messages ont bien été encodés !!!");
+
+    }
+
+    public function updateMessage(Request $request, $id){
+        $this->validate($request, [
+            'receive_email'                     => 'required',
+            'receive_email_subject'             => 'required',
+            'receive_email_thank_you_message'   => 'required',
+            'forget_password_message'           => 'required'
+        ]);
+
+        $message = Message::find($id);
+        $message->receive_email = $request->input('receive_email');
+        $message->receive_email_subject = $request->input('receive_email_subject');
+        $message->receive_email_thank_you_message = $request->input('receive_email_thank_you_message');
+        $message->forget_password_message = $request->input('forget_password_message');
+
+        $message->update();
+
+        return back()->with("status", "Vos messages ont été modifiés avec succès !!!");
 
     }
 

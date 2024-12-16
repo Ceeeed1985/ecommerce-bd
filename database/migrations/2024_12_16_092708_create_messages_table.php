@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
+            $table->string('receive_email');
+            $table->string('receive_email_subject');
+            $table->mediumText('receive_email_thank_you_message');
+            $table->mediumText('forget_password_message');
             $table->timestamps();
         });
     }

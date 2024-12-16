@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Favicon;
 use App\Models\Information;
 use App\Models\LogoImage;
+use App\Models\Message;
 
 class AdminController extends Controller
 {
@@ -21,11 +22,13 @@ class AdminController extends Controller
         $logoimage = LogoImage::first();
         $favicon = Favicon::first();
         $information = Information::first();
+        $message = Message::first();
 
         return view ('admin.settings')
             ->with("logoimage", $logoimage)
             ->with("favicon", $favicon)
-            ->with("information", $information);
+            ->with("information", $information)
+            ->with("message", $message);
     }
 
     public function registeredCustomers(): View
