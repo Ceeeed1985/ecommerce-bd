@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Favicon;
+use App\Models\FeaturedProduct;
 use App\Models\Information;
 use App\Models\LogoImage;
 use App\Models\Message;
@@ -302,5 +303,38 @@ class SettingController extends Controller
 
         return back()->with("status", "Vos métasections ont bien étés mises à jour !");
     }
+
+    public function saveFeaturedProduct(Request $request){
+        $this->validate($request, [
+            'featured_product_title' => 'required',
+            'featured_product_subtitle' => 'required'
+        ]);
+
+        $featuredProduct = new FeaturedProduct();
+        $featuredProduct->featured_product_title = $request->input('featured_product_title');
+        $featuredProduct->featured_product_subtitle = $request->input('featured_product_subtitle');
+
+        $featuredProduct->save();
+
+        return back()->with("status", "Vos préférences pour la section des produits phares ont été enregistrées !");
+    }
+
+    public function updateFeaturedProduct(Request $request, $id){
+        $this->validate($request, [
+            'featured_product_title' => 'required',
+            'featured_product_subtitle' => 'required'
+        ]);
+
+        $featuredProduct = FeaturedProduct::find($id);
+        $featuredProduct->featured_product_title = $request->input('featured_product_title');
+        $featuredProduct->featured_product_subtitle = $request->input('featured_product_subtitle');
+
+        $featuredProduct->update();
+
+        return back()->with("status", "Vos préférences pour la section des produits phares ont été mises à jour !");
+    }
+
+   
+
 
 }

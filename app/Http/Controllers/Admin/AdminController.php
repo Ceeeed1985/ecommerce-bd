@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
 use App\Models\Favicon;
+use App\Models\FeaturedProduct;
 use App\Models\Information;
 use App\Models\LogoImage;
 use App\Models\Message;
@@ -29,6 +30,7 @@ class AdminController extends Controller
         $productSetting = ProductSetting::first();
         $onOffSection = OnOffSection::first();
         $metaSection = MetaSection::first();
+        $featuredProduct = FeaturedProduct::first();
 
         return view ('admin.settings')
             ->with("logoimage", $logoimage)
@@ -37,7 +39,8 @@ class AdminController extends Controller
             ->with("message", $message)
             ->with("productSetting", $productSetting)
             ->with("onOffSection", $onOffSection)
-            ->with("metaSection", $metaSection);
+            ->with("metaSection", $metaSection)
+            ->with("featuredProduct", $featuredProduct);
     }
 
     public function registeredCustomers(): View

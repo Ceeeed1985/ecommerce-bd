@@ -125,6 +125,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::post('saveMetaSection', [SettingController::class, "saveMetaSection"]);
     Route::put('updateMetaSection/{id}', [SettingController::class, "updateMetaSection"]);
+
+    Route::post('saveFeaturedProduct', [SettingController::class, "saveFeaturedProduct"]);
+    Route::put('updateFeaturedProduct/{id}', [SettingController::class, "updateFeaturedProduct"]);
 });
 
 

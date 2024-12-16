@@ -408,25 +408,29 @@
                             </form>
                             
                             <h3>Featured Product Section</h3>
-                            <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                            <form class="form-horizontal" action="{{$featuredProduct ? url("admin/updateFeaturedProduct", [$featuredProduct->id]) : url("admin/saveFeaturedProduct")}}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                @if($featuredProduct)
+                                    @method('PUT')
+                                @endif
                                 <div class="box box-info">
                                 <div class="box-body">
                                     <div class="form-group">
                                         <label for="" class="col-sm-3 control-label">Featured Product Title<span>*</span></label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" name="featured_product_title" value="Featured Products">
+                                            <input type="text" class="form-control" name="featured_product_title" value="{{$featuredProduct ? $featuredProduct->featured_product_title : ""}}" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="" class="col-sm-3 control-label">Featured Product SubTitle<span>*</span></label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" name="featured_product_subtitle" value="Our list on Top Featured Products">
+                                            <input type="text" class="form-control" name="featured_product_subtitle" value="{{$featuredProduct ? $featuredProduct->featured_product_subtitle : ""}}" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="" class="col-sm-3 control-label"></label>
                                         <div class="col-sm-6">
-                                            <button type="submit" class="btn btn-success pull-left" name="form6_4">Update</button>
+                                            <button type="submit" class="btn btn-success pull-left" name="form6_4">{{$featuredProduct ? "Mettre à jour" : "Enregistrer"}}</button>
                                         </div>
                                     </div>
                                 </div>
