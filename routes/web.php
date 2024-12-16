@@ -131,6 +131,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::post('saveLatestProductSection', [SettingController::class, "saveLatestProductSection"]);
     Route::put('updateLatestProductSection/{id}', [SettingController::class, "updateLatestProductSection"]);
+
+    Route::post('savePopularProductSection', [SettingController::class, "savePopularProductSection"]);
+    Route::put('updatePopularProductSection/{id}', [SettingController::class, "updatePopularProductSection"]);
 });
 
 

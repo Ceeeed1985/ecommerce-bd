@@ -466,25 +466,29 @@
                                 </div>
                             </form>
                             <h3>Popular Product Section</h3>
-                            <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                            <form class="form-horizontal" action="{{$popularProductSection ? url("admin/updatePopularProductSection", [$popularProductSection->id]) : url("admin/savePopularProductSection")}}" method="post"">
+                                @csrf
+                                @if($popularProductSection)
+                                    @method('PUT')
+                                @endif
                                 <div class="box box-info">
                                 <div class="box-body">
                                     <div class="form-group">
                                         <label for="" class="col-sm-3 control-label">Popular Product Title<span>*</span></label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" name="popular_product_title" value="Popular Products">
+                                            <input type="text" class="form-control" name="popular_product_title" value="{{$popularProductSection ? $popularProductSection->popular_product_title : ""}}">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="" class="col-sm-3 control-label">Popular Product SubTitle<span>*</span></label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" name="popular_product_subtitle" value="Popular products based on customer's choice">
+                                            <input type="text" class="form-control" name="popular_product_subtitle" value="{{$popularProductSection ? $popularProductSection->popular_product_subtitle : ""}}">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="" class="col-sm-3 control-label"></label>
                                         <div class="col-sm-6">
-                                            <button type="submit" class="btn btn-success pull-left" name="form6_6">Update</button>
+                                            <button type="submit" class="btn btn-success pull-left" name="form6_6">{{$popularProductSection ? "Mettre à jour" : "Enregistrer"}}</button>
                                         </div>
                                     </div>
                                 </div>

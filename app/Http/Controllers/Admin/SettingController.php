@@ -12,6 +12,7 @@ use App\Models\LogoImage;
 use App\Models\Message;
 use App\Models\MetaSection;
 use App\Models\OnOffSection;
+use App\Models\PopularProductSection;
 use App\Models\ProductSetting;
 use Illuminate\Support\Facades\Storage;
 
@@ -273,8 +274,8 @@ class SettingController extends Controller
 
     public function saveMetaSection(Request $request){
         $this->validate($request, [
-            'meta_title_home' => 'required',
-            'meta_keyword_home' => 'required',
+            'meta_title_home'       => 'required',
+            'meta_keyword_home'     => 'required',
             'meta_description_home' => 'required'
         ]);
 
@@ -290,8 +291,8 @@ class SettingController extends Controller
 
     public function updateMetaSection(Request $request, $id){
         $this->validate($request, [
-            'meta_title_home' => 'required',
-            'meta_keyword_home' => 'required',
+            'meta_title_home'       => 'required',
+            'meta_keyword_home'     => 'required',
             'meta_description_home' => 'required'
         ]);
 
@@ -307,7 +308,7 @@ class SettingController extends Controller
 
     public function saveFeaturedProduct(Request $request){
         $this->validate($request, [
-            'featured_product_title' => 'required',
+            'featured_product_title'    => 'required',
             'featured_product_subtitle' => 'required'
         ]);
 
@@ -322,7 +323,7 @@ class SettingController extends Controller
 
     public function updateFeaturedProduct(Request $request, $id){
         $this->validate($request, [
-            'featured_product_title' => 'required',
+            'featured_product_title'    => 'required',
             'featured_product_subtitle' => 'required'
         ]);
 
@@ -337,8 +338,8 @@ class SettingController extends Controller
 
    public function saveLatestProductSection(Request $request){
     $this->validate($request, [
-        'latest_product_title' => 'required',
-        'latest_product_subtitle' => 'required'
+        'latest_product_title'      => 'required',
+        'latest_product_subtitle'   => 'required'
     ]);
 
     $latestProductSection = new LatestProductSection();
@@ -352,8 +353,8 @@ class SettingController extends Controller
 
    public function updateLatestProductSection(Request $request, $id){
     $this->validate($request, [
-        'latest_product_title' => 'required',
-        'latest_product_subtitle' => 'required'
+        'latest_product_title'      => 'required',
+        'latest_product_subtitle'   => 'required'
     ]);
 
     $latestProductSection = LatestProductSection::find($id);
@@ -364,5 +365,40 @@ class SettingController extends Controller
 
     return back()->with("status", "Vos préférences pour la section des derniers produits ont bien été mises à jour !");
    }
+
+   public function savePopularProductSection(Request $request){
+    $this->validate($request, [
+        'popular_product_title'     => 'required',
+        'popular_product_subtitle'  => 'required'
+    ]);
+
+    $popularProductSection = new PopularProductSection();
+    
+    $popularProductSection->popular_product_title = $request->input('popular_product_title');
+    $popularProductSection->popular_product_subtitle = $request->input('popular_product_subtitle');
+
+    $popularProductSection->save();
+
+    return back()->with("status", "Vos préférences pour la section des produits les plus populaires ont bien été enregistrés !");
+
+   }
+
+   public function updatePopularProductSection(Request $request, $id){
+    $this->validate($request, [
+        'popular_product_title'     => 'required',
+        'popular_product_subtitle'  => 'required'
+    ]);
+
+    $popularProductSection = PopularProductSection::find($id);
+
+    $popularProductSection->popular_product_title = $request->input('popular_product_title');
+    $popularProductSection->popular_product_subtitle = $request->input('popular_product_subtitle');
+
+    $popularProductSection->update();
+
+    return back()->with("status", "Vos préférences pour la section des produits les plus populaires ont bien été mises à jour !");
+
+   }
+
 
 }
