@@ -8,6 +8,7 @@ use App\Models\Favicon;
 use App\Models\Information;
 use App\Models\LogoImage;
 use App\Models\Message;
+use App\Models\ProductSetting;
 use Illuminate\Support\Facades\Storage;
 
 class SettingController extends Controller
@@ -183,6 +184,42 @@ class SettingController extends Controller
         $message->update();
 
         return back()->with("status", "Vos messages ont été modifiés avec succès !!!");
+
+    }
+
+    public function saveProductSetting(Request $request){
+        $this->validate($request, [
+            'total_featured_product_home'       => 'required',
+            'total_latest_product_home'         => 'required',
+            'total_popular_product_home'       => 'required',
+        ]);
+
+        $productSetting = new ProductSetting();
+        $productSetting->total_featured_product_home = $request->input('total_featured_product_home');
+        $productSetting->total_latest_product_home = $request->input('total_latest_product_home');
+        $productSetting->total_popular_product_home = $request->input('total_popular_product_home');
+
+        $productSetting->save();
+
+        return back()->with("status", "Les préférences ont bien été enregistrées !");
+
+    }
+
+    public function updateProductSetting(Request $request, $id){
+        $this->validate($request, [
+            'total_featured_product_home'       => 'required',
+            'total_latest_product_home'         => 'required',
+            'total_popular_product_home'       => 'required',
+        ]);
+
+        $productSetting = ProductSetting::find($id);
+        $productSetting->total_featured_product_home = $request->input('total_featured_product_home');
+        $productSetting->total_latest_product_home = $request->input('total_latest_product_home');
+        $productSetting->total_popular_product_home = $request->input('total_popular_product_home');
+
+        $productSetting->update();
+
+        return back()->with("status", "Vos préférences ont été mises à jour avec succès !");
 
     }
 

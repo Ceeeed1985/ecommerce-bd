@@ -223,31 +223,35 @@
                             </form>
                         </div>
                         <div class="tab-pane" id="tab_5">
-                            <form class="form-horizontal" action="" method="post">
+                            <form class="form-horizontal" action="{{$productSetting ? url('admin/updateproductsetting', [$productSetting->id]) : url('admin/saveproductsetting')}}" method="post">
+                                @csrf
+                                @if ($productSetting)
+                                    @method('PUT')
+                                @endif
                                 <div class="box box-info">
                                 <div class="box-body">
                                     <div class="form-group">
                                         <label for="" class="col-sm-4 control-label">Home Page (How many featured product?)<span>*</span></label>
                                         <div class="col-sm-2">
-                                            <input type="text" class="form-control" name="total_featured_product_home" value="5">
+                                            <input type="number" class="form-control" name="total_featured_product_home" value="{{$productSetting ? $productSetting->total_featured_product_home : ''}}" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="" class="col-sm-4 control-label">Home Page (How many latest product?)<span>*</span></label>
                                         <div class="col-sm-2">
-                                            <input type="text" class="form-control" name="total_latest_product_home" value="6">
+                                            <input type="number" class="form-control" name="total_latest_product_home" value="{{$productSetting ? $productSetting->total_latest_product_home : ''}}" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="" class="col-sm-4 control-label">Home Page (How many popular product?)<span>*</span></label>
                                         <div class="col-sm-2">
-                                            <input type="text" class="form-control" name="total_popular_product_home" value="8">
+                                            <input type="number" class="form-control" name="total_popular_product_home" value="{{$productSetting ? $productSetting->total_popular_product_home : ''}}" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="" class="col-sm-4 control-label"></label>
                                         <div class="col-sm-6">
-                                            <button type="submit" class="btn btn-success pull-left" name="form5">Update</button>
+                                            <button type="submit" class="btn btn-success pull-left" name="form5">{{$productSetting ? "Mettre à jour" : "Sauvegarder"}}</button>
                                         </div>
                                     </div>
                                 </div>

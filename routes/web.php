@@ -107,7 +107,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // SettingController
     Route::post('savelogo', [SettingController::class, "saveLogo"]);
     Route::put('updatelogo/{id}', [SettingController::class, "updateLogo"]);
-    
+
     Route::post('savefavicon', [SettingController::class, "saveFavicon"]);
     Route::put('updatefavicon/{id}', [SettingController::class, "updateFavicon"]);
 
@@ -116,6 +116,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::post('savemessage', [SettingController::class, "saveMessage"]);
     Route::put('updatemessage/{id}', [SettingController::class, "updateMessage"]);
+
+    Route::post('saveproductsetting', [SettingController::class, "saveProductSetting"]);
+    Route::put('updateproductsetting/{id}', [SettingController::class, "updateProductSetting"]);
 
 });
 
