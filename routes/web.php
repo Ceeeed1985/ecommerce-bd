@@ -137,6 +137,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::post('saveNewsletterSection', [SettingController::class, "saveNewsletterSection"]);
     Route::put('updateNewsletterSection/{id}', [SettingController::class, "updateNewsletterSection"]);
+
+    Route::post('saveBanner', [SettingController::class, 'saveBanner']);
+    Route::put('updateBanner/{id}', [SettingController::class, 'updateBanner']);
 });
 
 

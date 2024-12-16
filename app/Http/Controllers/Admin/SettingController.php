@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Models\Banner;
 use App\Models\Favicon;
-use App\Models\FeaturedProduct;
-use App\Models\Information;
-use App\Models\LatestProductSection;
-use App\Models\LogoImage;
 use App\Models\Message;
+use App\Models\LogoImage;
+use App\Models\Information;
 use App\Models\MetaSection;
-use App\Models\NewsletterSection;
 use App\Models\OnOffSection;
-use App\Models\PopularProductSection;
+use Illuminate\Http\Request;
 use App\Models\ProductSetting;
+use App\Models\FeaturedProduct;
+use App\Models\NewsletterSection;
+use App\Http\Controllers\Controller;
+use App\Models\LatestProductSection;
+use App\Models\PopularProductSection;
 use Illuminate\Support\Facades\Storage;
 
 class SettingController extends Controller
@@ -427,5 +428,47 @@ class SettingController extends Controller
 
    }
 
+   public function saveBanner(Request $request){
+    $this->validate($request, [
+        'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+    ]);
+
+    $fileNameWithExt = $request->file('photo')->getClientOriginalName();
+        
+    $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+
+    $ext = $request->file('photo')->getClientOriginalExtension();
+
+    $fileNameToStore = $fileName.'_'.time().'.'.$ext;
+
+    $path = $request->file('photo')->storeAs('public/banner', $fileNameToStore);
+
+    $banner = new Banner();
+    $banner->photo = $fileNameToStore;
+    $banner->save();
+
+    return back()->with("status", "Votre photo de bannière a bien été ajoutée !");
+   }
+
+   public function updateBanner(Request $request, $id){
+    $this->validate($request, [
+        'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+    ]);
+
+    $fileNameWithExt = $request->file('photo')->getClientOriginalName();
+    $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+    $ext = $request->file('photo')->getClientOriginalExtension();
+    $fileNameToStore = $fileName.'_'.time().'.'.$ext;
+
+    $banner = Banner::find($id);
+    Storage::delete("public/banner/$banner->photo");
+
+    $path = $request->file('photo')->storeAs('public/banner', $fileNameToStore);
+
+    $banner->photo = $fileNameToStore;
+    $banner->update();
+
+    return back()->with("status", "Votre bannière a été mise à jour avec succès !");
+   }
 
 }

@@ -521,17 +521,26 @@
                         <div class="tab-pane" id="tab_7">
                             <table class="table table-bordered">
                                 <tr>
-                                <form action="" method="post" enctype="multipart/form-data">
+                                <form action="{{$banner ? url("admin/updateBanner", [$banner->id]) : url("admin/saveBanner")}}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    @if($banner)
+                                        @method('PUT')
+                                    @endif
                                     <td style="width:50%">
                                         <h4>Existing Login Page Banner</h4>
-                                        <p>
+                                        @if ($banner)
+                                                <p><img src="{{asset('storage/banner/'.$banner->photo)}}" alt="{{$banner->photo}}" style="width: 100%;height:auto;"></p>
+                                            @else
+                                                <p><img src="{{asset('storage/defaultimage/noimage.jpg')}}" alt="Pas d'image de logo" style="width: 100%;height:auto;"></p>
+                                            @endif
+                                        {{-- <p>
                                             <img src="{{asset('backend/uploads/banner_login.jpg')}}" alt="" style="width: 100%;height:auto;"> 
-                                        </p>
+                                        </p> --}}
                                     </td>
                                     <td style="width:50%">
                                         <h4>Change Login Page Banner</h4>
-                                        Select Photo<input type="file" name="photo">
-                                        <input type="submit" class="btn btn-primary btn-xs" value="Change" style="margin-top:10px;" name="form7_1">
+                                        Select Photo<input type="file" name="photo" required>
+                                        <input type="submit" class="btn btn-primary btn-xs" value="{{$banner ? "Changer la photo" : "Enregistrer la photo"}}" style="margin-top:10px;" name="form7_1">
                                     </td>
                                 </form>
                                 </tr>

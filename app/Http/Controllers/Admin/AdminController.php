@@ -13,6 +13,7 @@ use App\Models\ProductSetting;
 use App\Models\FeaturedProduct;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
+use App\Models\Banner;
 use App\Models\LatestProductSection;
 use App\Models\NewsletterSection;
 use App\Models\PopularProductSection;
@@ -37,6 +38,7 @@ class AdminController extends Controller
         $latestProductSection = LatestProductSection::first();
         $popularProductSection = PopularProductSection::first();
         $newsletterSection = NewsletterSection::first();
+        $banner = Banner::first();
 
         return view ('admin.settings')
             ->with("logoimage", $logoimage)
@@ -49,7 +51,8 @@ class AdminController extends Controller
             ->with("featuredProduct", $featuredProduct)
             ->with("latestProductSection", $latestProductSection)
             ->with("popularProductSection", $popularProductSection)
-            ->with("newsletterSection", $newsletterSection);
+            ->with("newsletterSection", $newsletterSection)
+            ->with("banner", $banner);
     }
 
     public function registeredCustomers(): View
