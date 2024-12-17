@@ -53,6 +53,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('editsizepage/{id}', [SizeController::class, 'getEditSizePage'])->name('editSizePage');
     Route::post('createsize', [SizeController::class, 'create'])->name('createSize');
     Route::put('editsize/{id}', [SizeController::class, 'edit'])->name('editSize');
+    Route::delete('deletesize/{id}', [SizeController::class, 'delete'])->name('deleteSize');
 
     // Shop Settings - Color
     Route::get('color', [ColorController::class, 'index']);

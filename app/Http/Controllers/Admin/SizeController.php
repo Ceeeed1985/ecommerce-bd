@@ -56,4 +56,11 @@ class SizeController extends Controller
         return back()->with("status", "La taille a été mise à jour avec succès !");
     }
 
+    public function delete($id){
+        $size = Size::find($id);
+        $size->delete();
+
+        return back()->with("status", "La taille a été supprimée avec succès !");
+
+    }
 }
