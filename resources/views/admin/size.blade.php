@@ -1,7 +1,7 @@
 @extends('admin_layout.master')
 
 @section('title')
-   Size
+   Gestion des tailles
 @endsection
 
 @section('content')
@@ -9,10 +9,10 @@
     <div class="content-wrapper">
     <section class="content-header">
         <div class="content-header-left">
-            <h1>View Sizes</h1>
+            <h1>Gestion des tailles</h1>
         </div>
         <div class="content-header-right">
-            <a href="{{route('admin.addSize')}}" class="btn btn-primary btn-sm">Add New</a>
+            <a href="{{route('admin.addSizePage')}}" class="btn btn-primary btn-sm">Nouvelle taille</a>
         </div>
     </section>
     
@@ -25,8 +25,8 @@
                         <thead>
                             <tr>
                             <th>#</th>
-                            <th>Size Name</th>
-                            <th>Action</th>
+                            <th>Tailles</th>
+                            <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>

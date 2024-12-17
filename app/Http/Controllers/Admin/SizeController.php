@@ -19,9 +19,9 @@ class SizeController extends Controller
             ->with('i', $i);
     }
 
-    public function create(): View
+    public function getAddSizePage(): View
     {
-        return view ('admin.addsize');
+        return view ('admin.addsizepage');
     }
 
     public function editSize($id): View
@@ -30,7 +30,7 @@ class SizeController extends Controller
         return view ('admin.editsize')->with('size', $size);
     }
 
-    public function saveSize(Request $request){
+    public function create(Request $request){
         $this->validate($request, [
             'size_name' => 'required'
         ]);

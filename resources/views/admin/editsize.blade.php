@@ -1,7 +1,7 @@
 @extends('admin_layout.master')
 
 @section('title')
-   Edit Size Page
+   Modifier une taille
 @endsection
 
 @section('content')
@@ -9,10 +9,10 @@
     <div class="content-wrapper">
         <section class="content-header">
             <div class="content-header-left">
-                <h1>Edit Size</h1>
+                <h1>Modifier une taille</h1>
             </div>
             <div class="content-header-right">
-                <a href="{{route('admin.size')}}" class="btn btn-primary btn-sm">View All</a>
+                <a href="{{route('admin.size')}}" class="btn btn-primary btn-sm">Toutes les tailles</a>
             </div>
         </section>
 
@@ -37,7 +37,7 @@
                     <div class="box box-info">
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="" class="col-sm-2 control-label">Size Name <span>*</span></label>
+                                <label for="" class="col-sm-2 control-label">Taille <span>*</span></label>
                                 <div class="col-sm-4">
                                 <input type="text" class="form-control" name="size_name" value="{{$size->size_name}}" required>
                                 </div>
