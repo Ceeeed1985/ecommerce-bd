@@ -48,14 +48,20 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('orders', [AdminController::class, 'orders']);
 
     // Shop Settings - Size
-    Route::get('size', [SizeController::class, 'index']);
-    Route::get('addsize', [SizeController::class, 'create']);
-    Route::get('editsize', [SizeController::class, 'edit']);
+    Route::get('size', [SizeController::class, 'index'])->name('size');
+    Route::get('addsizepage', [SizeController::class, 'getAddSizePage'])->name('addSizePage');
+    Route::get('editsizepage/{id}', [SizeController::class, 'getEditSizePage'])->name('editSizePage');
+    Route::post('createsize', [SizeController::class, 'create'])->name('createSize');
+    Route::put('editsize/{id}', [SizeController::class, 'edit'])->name('editSize');
+    Route::delete('deletesize/{id}', [SizeController::class, 'delete'])->name('deleteSize');
 
     // Shop Settings - Color
-    Route::get('color', [ColorController::class, 'index']);
-    Route::get('addcolor', [ColorController::class, 'create']);
-    Route::get('editcolor', [ColorController::class, 'edit']);
+    Route::get('color', [ColorController::class, 'index'])->name('color');
+    Route::get('addcolorpage', [ColorController::class, 'getAddColorPage'])->name('addColorPage');
+    Route::get('editcolorpage/{id}', [ColorController::class, 'getEditColorPage'])->name('editColorPage');
+    Route::post('createcolor', [ColorController::class, 'create'])->name('createColor');
+    Route::put('editcolor/{id}', [ColorController::class, 'edit'])->name('editColor');
+    Route::delete('deletecolor/{id}', [ColorController::class, 'delete'])->name('deleteColor');
 
     // Shop Settings - Country
     Route::get('country', [CountryController::class, 'index']);
