@@ -56,9 +56,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::delete('deletesize/{id}', [SizeController::class, 'delete'])->name('deleteSize');
 
     // Shop Settings - Color
-    Route::get('color', [ColorController::class, 'index']);
-    Route::get('addcolor', [ColorController::class, 'create']);
-    Route::get('editcolor', [ColorController::class, 'edit']);
+    Route::get('color', [ColorController::class, 'index'])->name('color');
+    Route::get('addcolorpage', [ColorController::class, 'getAddColorPage'])->name('addColorPage');
+    Route::get('editcolorpage/{id}', [ColorController::class, 'getEditColorPage'])->name('editColorPage');
+    Route::post('createcolor', [ColorController::class, 'create'])->name('createColor');
+    Route::put('editcolor/{id}', [ColorController::class, 'edit'])->name('editColor');
+    Route::delete('deletecolor/{id}', [ColorController::class, 'delete'])->name('deleteColor');
 
     // Shop Settings - Country
     Route::get('country', [CountryController::class, 'index']);
