@@ -9,28 +9,29 @@ use App\Http\Controllers\Controller;
 
 class SizeController extends Controller
 {
-    
+    // PAGE AVEC TOUTES LES TAILLES
     public function index(): View
     {
         $sizes = Size::get();
         $i = 1;
-        return view ('admin.size')
-            ->with('sizes', $sizes)
-            ->with('i', $i);
+        return view ('admin.size')->with('sizes', $sizes)->with('i', $i);
     }
 
-    public function create(): View
+    // PAGE POUR AJOUTER UNE TAILLE
+    public function getAddSizePage(): View
     {
-        return view ('admin.addsize');
+        return view ('admin.addsizepage');
     }
 
-    public function editSize($id): View
+    // PAGE POUR MODIFIER UNE TAILLE
+    public function getEditSizePage($id): View
     {
         $size = Size::find($id);
-        return view ('admin.editsize')->with('size', $size);
+        return view ('admin.editsizepage')->with('size', $size);
     }
 
-    public function saveSize(Request $request){
+    // AJOUTER UNE TAILLE
+    public function create(Request $request){
         $this->validate($request, [
             'size_name' => 'required'
         ]);
@@ -42,7 +43,8 @@ class SizeController extends Controller
         return back()->with("status", "La nouvelle taille a été encodée avec succès !");
     }
 
-    public function updateSize(Request $request, $id){
+    // MODIFIER UNE TAILLE
+    public function edit(Request $request, $id){
         $this->validate ($request, [
             'size_name' => 'required'
         ]);

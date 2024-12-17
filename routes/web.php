@@ -49,10 +49,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     // Shop Settings - Size
     Route::get('size', [SizeController::class, 'index'])->name('size');
-    Route::get('addsize', [SizeController::class, 'create'])->name('addSize');
-    Route::get('editsize/{id}', [SizeController::class, 'editSize'])->name('editSize');
-    Route::post('saveSize', [SizeController::class, 'saveSize'])->name('saveSize');
-    Route::put('updateSize/{id}', [SizeController::class, 'updateSize'])->name('updateSize');
+    Route::get('addsizepage', [SizeController::class, 'getAddSizePage'])->name('addSizePage');
+    Route::get('editsizepage/{id}', [SizeController::class, 'getEditSizePage'])->name('editSizePage');
+    Route::post('createsize', [SizeController::class, 'create'])->name('createSize');
+    Route::put('editsize/{id}', [SizeController::class, 'edit'])->name('editSize');
 
     // Shop Settings - Color
     Route::get('color', [ColorController::class, 'index']);
