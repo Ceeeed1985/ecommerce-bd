@@ -35,7 +35,7 @@
                                 <td>{{$i++}}</td>
                                 <td>{{$size->size_name}}</td>
                                 <td>
-                                    <a href="{{route('admin.editSize', [$size->id])}}" class="btn btn-primary btn-xs">Modifier</a>
+                                    <a href="{{route('admin.editSizePage', [$size->id])}}" class="btn btn-primary btn-xs">Modifier</a>
                                     <a href="#" class="btn btn-danger btn-xs" data-href="size-delete.php?id=1" data-toggle="modal" data-target="#confirm-delete">Delete</a>
                                 </td>
                             </tr>

@@ -31,7 +31,7 @@
         <section class="content">
             <div class="row">
                 <div class="col-md-12">
-                    <form class="form-horizontal" action="{{route("admin.updateSize", [$size->id])}}" method="post">
+                    <form class="form-horizontal" action="{{route("admin.editSize", [$size->id])}}" method="post">
                     @csrf
                     @method('PUT')
                     <div class="box box-info">
