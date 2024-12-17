@@ -12,9 +12,10 @@
             <h1>View Sizes</h1>
         </div>
         <div class="content-header-right">
-            <a href="size-add.php" class="btn btn-primary btn-sm">Add New</a>
+            <a href="{{route('admin.addSize')}}" class="btn btn-primary btn-sm">Add New</a>
         </div>
     </section>
+    
     <section class="content">
         <div class="row">
             <div class="col-md-12">
@@ -29,23 +30,25 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($sizes as $size)
                             <tr>
-                            <td>1</td>
-                            <td>XS</td>
-                            <td>
-                                <a href="size-edit.php?id=1" class="btn btn-primary btn-xs">Edit</a>
-                                <a href="#" class="btn btn-danger btn-xs" data-href="size-delete.php?id=1" data-toggle="modal" data-target="#confirm-delete">Delete</a>
-                            </td>
+                                <td>{{$i++}}</td>
+                                <td>{{$size->size_name}}</td>
+                                <td>
+                                    <a href="{{route('admin.editSize', [$size->id])}}" class="btn btn-primary btn-xs">Modifier</a>
+                                    <a href="#" class="btn btn-danger btn-xs" data-href="size-delete.php?id=1" data-toggle="modal" data-target="#confirm-delete">Delete</a>
+                                </td>
                             </tr>
-                            <tr>
+                            @endforeach
+                            {{-- <tr>
                             <td>2</td>
                             <td>S</td>
                             <td>
                                 <a href="size-edit.php?id=2" class="btn btn-primary btn-xs">Edit</a>
                                 <a href="#" class="btn btn-danger btn-xs" data-href="size-delete.php?id=2" data-toggle="modal" data-target="#confirm-delete">Delete</a>
                             </td>
-                            </tr>
-                            <tr>
+                            </tr> --}}
+                            {{-- <tr>
                             <td>3</td>
                             <td>M</td>
                             <td>
@@ -404,7 +407,7 @@
                                 <a href="size-edit.php?id=47" class="btn btn-primary btn-xs">Edit</a>
                                 <a href="#" class="btn btn-danger btn-xs" data-href="size-delete.php?id=47" data-toggle="modal" data-target="#confirm-delete">Delete</a>
                             </td>
-                            </tr>
+                            </tr> --}}
                         </tbody>
                     </table>
                 </div>
