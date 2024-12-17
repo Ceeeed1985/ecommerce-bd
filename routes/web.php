@@ -64,9 +64,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::delete('deletecolor/{id}', [ColorController::class, 'delete'])->name('deleteColor');
 
     // Shop Settings - Country
-    Route::get('country', [CountryController::class, 'index']);
-    Route::get('addcountry', [CountryController::class, 'create']);
-    Route::get('editcountry', [CountryController::class, 'edit']);
+    Route::get('country', [CountryController::class, 'index'])->name('country');
+    Route::get('addcountrypage', [CountryController::class, 'getAddCountryPage'])->name('addCountryPage');
+    Route::get('editcountrypage/{id}', [CountryController::class, 'getEditCountryPage'])->name('editCountryPage');
+    Route::post('createcountry', [CountryController::class, 'create'])->name('createCountry');
+    Route::put('editcountry/{id}', [CountryController::class, 'edit'])->name('editCountry');
+    Route::delete('deletecountry/{id}', [CountryController::class, 'delete'])->name('deleteCountry');
 
     // Shop Settings - Shipping Cost
     Route::get('shippingcost', [ShippingCostController::class, 'index']);
