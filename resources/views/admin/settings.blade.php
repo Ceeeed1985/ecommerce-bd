@@ -145,9 +145,7 @@
                                     <div class="form-group">
                                         <label for="" class="col-sm-2 control-label">Contact Address </label>
                                         <div class="col-sm-6">
-                                            <textarea class="form-control" name="contact_address" style="height:140px;" required>
-                                                {{$information ? $information->contact_address : ""}}
-                                            </textarea>
+                                            <textarea class="form-control" name="contact_address" style="height:140px;" required>{{$information ? $information->contact_address : ""}}</textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -165,9 +163,7 @@
                                     <div class="form-group">
                                         <label for="" class="col-sm-2 control-label">Contact Map iFrame </label>
                                         <div class="col-sm-9">
-                                            <textarea class="form-control" name="contact_map_iframe" style="height:200px;" required>
-                                                {{$information ? $information->contact_map_iframe : ''}}
-                                            </textarea>
+                                            <textarea class="form-control" name="contact_map_iframe" style="height:200px;" required>{{$information ? $information->contact_map_iframe : ''}}</textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">

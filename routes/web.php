@@ -72,25 +72,37 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::delete('deletecountry/{id}', [CountryController::class, 'delete'])->name('deleteCountry');
 
     // Shop Settings - Shipping Cost
-    Route::get('shippingcost', [ShippingCostController::class, 'index']);
-    Route::get('editshippingcost', [ShippingCostController::class, 'edit']);
+    Route::get('shippingcost', [ShippingCostController::class, 'index'])->name('shippingCost');
+    Route::get('editshippingcostpage/{id}', [ShippingCostController::class, 'getEditShippingCostPage'])->name('editShippingCostPage');
+    Route::post('createshippingcost', [ShippingCostController::class, 'create'])->name('createShippingCost');
+    Route::put('editshippingcost/{id}', [ShippingCostController::class, 'edit'])->name('editShippingCost');
+    Route::delete('deleteshippingcost/{id}', [ShippingCostController::class, 'delete'])->name('deleteShippingCost');
+    Route::post('createshippingcostrest', [ShippingCostController::class, 'createShippingCostRest'])->name('createShippingCostRest');
+    Route::put('editshippingcostrest/{id}', [ShippingCostController::class, 'editShippingCostRest'])->name('editShippingCostRest');
 
     // ADMIN - Categories
     Route::prefix('category')->name('category.')->group(function () {
         // Category Top Level
-        Route::get('toplevel', [CategoryController::class, 'indexTopLevel'])->name('toplevel.index');
-        Route::get('toplevel/create', [CategoryController::class, 'createTopLevel'])->name('toplevel.create');
-        Route::get('toplever/edit', [CategoryController::class, 'editTopLevel'])->name('toplevel.edit');
+        Route::prefix('toplevel')->name('toplevel.')->group(function () {
+            Route::get('/', [CategoryController::class, 'indexTopLevel'])->name('index');
+            Route::get('create', [CategoryController::class, 'createTopLevel'])->name('create');
+            Route::get('edit', [CategoryController::class, 'editTopLevel'])->name('edit');
+            Route::post('store', [CategoryController::class, 'storeTopLevel'])->name('store');
+        });
 
         // Category Mid Level
-        Route::get('midlevel', [CategoryController::class, 'indexMidLevel'])->name('midlevel.index');
-        Route::get('midlevel/create', [CategoryController::class, 'createMidLevel'])->name('midlevel.create');
-        Route::get('midlevel/edit', [CategoryController::class, 'editMidLevel'])->name('midlevel.edit');
+        Route::prefix('midlevel')->name('midlevel.')->group(function(){
+            Route::get('/', [CategoryController::class, 'indexMidLevel'])->name('index');
+            Route::get('create', [CategoryController::class, 'createMidLevel'])->name('create');
+            Route::get('edit', [CategoryController::class, 'editMidLevel'])->name('edit');
+        });
 
         // Category End Level
-        Route::get('endlevel', [CategoryController::class, 'indexEndLevel'])->name('endlevel.index');
-        Route::get('endlevel/create', [CategoryController::class, 'createEndLevel'])->name('endlevel.create');
-        Route::get('endlevel/edit', [CategoryController::class, 'editEndLevel'])->name('endlevel.edit');
+        Route::prefix('endlevel')->name('endlevel.')->group(function() {
+            Route::get('/', [CategoryController::class, 'indexEndLevel'])->name('index');
+            Route::get('create', [CategoryController::class, 'createEndLevel'])->name('create');
+            Route::get('edit', [CategoryController::class, 'editEndLevel'])->name('edit');
+        });
     });
 
     // Products
