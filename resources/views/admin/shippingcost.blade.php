@@ -48,7 +48,7 @@
                         <div class="form-group">
                             <label for="" class="col-sm-2 control-label">Frais en euros <span>*</span></label>
                             <div class="col-sm-4">
-                            <input type="number" step="0.01" class="form-control" name="amount">
+                            <input type="number" step="0.01" class="form-control" name="amount" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -79,7 +79,7 @@
                             <th>#</th>
                             <th>Pays</th>
                             <th>Frais en euros</th>
-                            <th>Action</th>
+                            <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -122,7 +122,7 @@
                             <div class="form-group">
                                 <label for="" class="col-sm-2 control-label">Frais en euros <span>*</span></label>
                                 <div class="col-sm-4">
-                                    <input type="number" step="0.01"  class="form-control" name="amount" value="{{$shippingCostRest ? $shippingCostRest->amount : ""}}">
+                                    <input type="number" step="0.01"  class="form-control" name="amount" value="{{$shippingCostRest ? $shippingCostRest->amount : ""}}" required>
                                 </div>
                             </div>
                             <div class="form-group">

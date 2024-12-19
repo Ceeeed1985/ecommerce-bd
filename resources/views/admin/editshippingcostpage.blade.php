@@ -9,7 +9,7 @@
     <div class="content-wrapper">
         <section class="content-header">
             <div class="content-header-left">
-                <h1>Edit Shipping Cost</h1>
+                <h1>Modifier les frais de livraison</h1>
             </div>
             <div class="content-header-right">
                 <a href="{{route('admin.shippingCost')}}" class="btn btn-primary btn-sm">Tous les frais de livraison</a>
@@ -52,15 +52,15 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="" class="col-sm-2 control-label">Amount <span>*</span></label>
+                                <label for="" class="col-sm-2 control-label">Frais de livraison <span>*</span></label>
                                 <div class="col-sm-4">
-                                <input type="number" step="0.01" class="form-control" name="amount" value="{{$shippingCost->amount}}">
+                                <input type="number" step="0.01" class="form-control" name="amount" value="{{$shippingCost->amount}}" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="" class="col-sm-2 control-label"></label>
                                 <div class="col-sm-6">
-                                <button type="submit" class="btn btn-success pull-left" name="form1">Update</button>
+                                <button type="submit" class="btn btn-success pull-left" name="form1">Mettre à jour</button>
                                 </div>
                             </div>
                         </div>
