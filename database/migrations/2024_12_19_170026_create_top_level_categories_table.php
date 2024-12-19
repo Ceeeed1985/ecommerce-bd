@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('top_level_categories', function (Blueprint $table) {
             $table->id();
             $table->string('tcat_name');
-            $table->string('show_on_menu');
+            $table->boolean('show_on_menu')->default(false);
             $table->timestamps();
         });
     }

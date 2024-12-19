@@ -1,7 +1,7 @@
 @extends('admin_layout.master')
 
 @section('title')
-    Edit Top Level Category
+    Modifier une catégorie Top Level
 @endsection
 
 @section('content')
@@ -9,30 +9,55 @@
     <div class="content-wrapper">
         <section class="content-header">
             <div class="content-header-left">
-                <h1>Edit Top Level Category</h1>
+                <h1>Modifier une catégorie Top Level</h1>
             </div>
             <div class="content-header-right">
-                <a href="top-category.php" class="btn btn-primary btn-sm">View All</a>
+                <a href="{{route('admin.category.toplevel.index')}}" class="btn btn-primary btn-sm">Toutes les catégories</a>
             </div>
         </section>
+
+        @if (Session::has("status"))
+            <section class="content" style="min-height:auto;margin-bottom: -30px;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="callout callout-success">
+                        <p>{{Session::get("status")}}</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        @endif
+
         <section class="content">
             <div class="row">
                 <div class="col-md-12">
-                    <form class="form-horizontal" action="" method="post">
+                    <form class="form-horizontal" action="{{route('admin.category.toplevel.update', [$toplevel->id])}}" method="post">
+                        @csrf
+                        @method('PUT')
                     <div class="box box-info">
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="" class="col-sm-2 control-label">Top Category Name <span>*</span></label>
+                                <label for="" class="col-sm-2 control-label">Modifier la catégorie <span>*</span></label>
                                 <div class="col-sm-4">
-                                <input type="text" class="form-control" name="tcat_name" value="Health and Household">
+                                <input type="text" class="form-control" name="tcat_name" value="{{$toplevel->tcat_name}}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="" class="col-sm-2 control-label">Show on Menu? <span>*</span></label>
                                 <div class="col-sm-4">
                                 <select name="show_on_menu" class="form-control" style="width:auto;">
-                                    <option value="0" >No</option>
-                                    <option value="1" selected>Yes</option>
+                                    @if ($toplevel)
+                                        @if ($toplevel->show_on_menu == 1)
+                                            <option value="0" >Non</option>
+                                            <option value="1" selected>Oui</option>
+                                        @else
+                                            <option value="0" selected>Non</option>
+                                            <option value="1" >Oui</option>
+                                        @endif
+                                    @else
+                                        <option value="0" selected>Non</option>
+                                        <option value="1">Oui</option>
+                                    @endif
                                 </select>
                                 </div>
                             </div>
