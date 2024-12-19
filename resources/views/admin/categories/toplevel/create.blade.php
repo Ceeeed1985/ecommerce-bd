@@ -45,8 +45,8 @@
                             <label for="" class="col-sm-2 control-label">Afficher dans le menu ? <span>*</span></label>
                             <div class="col-sm-4">
                             <select name="show_on_menu" class="form-control" style="width:auto;">
-                                <option value="Non" selected>Non</option>
-                                <option value="Oui">Oui</option>
+                                <option value="0" selected>Non</option>
+                                <option value="1">Oui</option>
                             </select>
                             </div>
                         </div>

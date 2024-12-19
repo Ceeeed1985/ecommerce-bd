@@ -48,7 +48,6 @@
                                 <td>{{$color->color_name}}</td>
                                 <td style='display:flex'>
                                     <a href="{{route('admin.editColorPage', [$color->id])}}" class="btn btn-primary btn-xs">Edit</a>
-                                    {{-- <a href="#" class="btn btn-danger btn-xs" data-href="color-delete.php?id=1" data-toggle="modal" data-target="#confirm-delete">Delete</a> --}}
                                     <form method ='POST' action="{{route('admin.deleteColor', [$color->id])}}">
                                         @csrf
                                         @method('DELETE')

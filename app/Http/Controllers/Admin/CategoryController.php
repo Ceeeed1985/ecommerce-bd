@@ -36,9 +36,31 @@ class CategoryController extends Controller
         return back()->with('status', 'Les informations sur la Top Catégory ont été encodées avec succès !');
     }
 
-    public function editTopLevel(): View
+    public function editTopLevel($id): View
     {
-        return view ('admin.categories.toplevel.edit');
+        $toplevel = TopLevelCategory::find($id);
+        return view ('admin.categories.toplevel.edit')->with('toplevel', $toplevel);
+    }
+
+    public function updateTopLevel(Request $request, $id){
+        $this->validate($request, [
+            'tcat_name'     => 'required',
+            'show_on_menu'  => 'required'
+        ]);
+
+        $toplevel = TopLevelCategory::find($id);
+        $toplevel->tcat_name = $request->input('tcat_name');
+        $toplevel->show_on_menu = $request->input('show_on_menu');
+        $toplevel->update();
+
+        return back()->with('status', 'Les informations sur la catégorie Top Level ont été mises à jour avec succès !');
+    }
+
+    public function deleteTopLevel($id){
+        $toplevel = TopLevelCategory::find($id);
+        $toplevel->delete();
+
+        return back()->with('status', 'Votre catégorie a été supprimée avec succès !');
     }
 
     public function indexMidLevel(): View
