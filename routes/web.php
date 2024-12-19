@@ -72,8 +72,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::delete('deletecountry/{id}', [CountryController::class, 'delete'])->name('deleteCountry');
 
     // Shop Settings - Shipping Cost
-    Route::get('shippingcost', [ShippingCostController::class, 'index']);
-    Route::get('editshippingcost', [ShippingCostController::class, 'edit']);
+    Route::get('shippingcost', [ShippingCostController::class, 'index'])->name('shippingCost');
+    Route::get('editshippingcostpage/{id}', [ShippingCostController::class, 'getEditShippingCostPage'])->name('editShippingCostPage');
+    Route::post('createshippingcost', [ShippingCostController::class, 'create'])->name('createShippingCost');
+    Route::put('editshippingcost/{id}', [ShippingCostController::class, 'edit'])->name('editShippingCost');
+    Route::delete('deleteshippingcost/{id}', [ShippingCostController::class, 'delete'])->name('deleteShippingCost');
+    Route::post('createshippingcostrest', [ShippingCostController::class, 'createShippingCostRest'])->name('createShippingCostRest');
+    Route::put('editshippingcostrest/{id}', [ShippingCostController::class, 'editShippingCostRest'])->name('editShippingCostRest');
 
     // ADMIN - Categories
     Route::prefix('category')->name('category.')->group(function () {

@@ -9,7 +9,7 @@
     <div class="content-wrapper">
     <section class="content-header">
         <div class="content-header-left">
-            <h1>Add Country</h1>
+            <h1>Ajouter un pays</h1>
         </div>
         <div class="content-header-right">
             <a href="{{route('admin.country')}}" class="btn btn-primary btn-sm">Tous les pays</a>
@@ -36,7 +36,7 @@
                 <div class="box box-info">
                     <div class="box-body">
                         <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">Country Name <span>*</span></label>
+                            <label for="" class="col-sm-2 control-label">Pays <span>*</span></label>
                             <div class="col-sm-4">
                             <input type="text" class="form-control" name="country_name" required>
                             </div>
@@ -44,7 +44,7 @@
                         <div class="form-group">
                             <label for="" class="col-sm-2 control-label"></label>
                             <div class="col-sm-6">
-                            <button type="submit" class="btn btn-success pull-left" name="form1">Submit</button>
+                            <button type="submit" class="btn btn-success pull-left" name="form1">Enregistrer</button>
                             </div>
                         </div>
                     </div>
