@@ -12,7 +12,7 @@
             <h1>View End Level Categories</h1>
         </div>
         <div class="content-header-right">
-            <a href="end-category-add.php" class="btn btn-primary btn-sm">Add New</a>
+            <a href="{{route('admin.category.endlevel.create')}}" class="btn btn-primary btn-sm">Add New</a>
         </div>
     </section>
     <section class="content">

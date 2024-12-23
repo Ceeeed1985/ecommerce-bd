@@ -96,7 +96,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::prefix('midlevel')->name('midlevel.')->group(function(){
             Route::get('/', [CategoryController::class, 'indexMidLevel'])->name('index');
             Route::get('create', [CategoryController::class, 'createMidLevel'])->name('create');
-            Route::get('edit', [CategoryController::class, 'editMidLevel'])->name('edit');
+            Route::get('edit/{id}', [CategoryController::class, 'editMidLevel'])->name('edit');
+            Route::post('store', [CategoryController::class, 'storeMidLevel'])->name('store');
+            Route::put('update/{id}', [CategoryController::class, 'updateMidLevel'])->name('update');
+            Route::delete('delete/{id}', [CategoryController::class, 'deleteMidLevel'])->name('delete');
         });
 
         // Category End Level

@@ -5,11 +5,14 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
+use App\Models\MidLevelCategory;
 use App\Models\TopLevelCategory;
 
 class CategoryController extends Controller
 {
-    
+    // ***********************************************************************
+    // --------------------- TOP LEVEL CATEGORY ------------------------------
+    // ***********************************************************************
     public function indexTopLevel(): View
     {
         $toplevels = TopLevelCategory::get();
@@ -63,20 +66,67 @@ class CategoryController extends Controller
         return back()->with('status', 'Votre catégorie a été supprimée avec succès !');
     }
 
+    // ***********************************************************************
+    // --------------------- MID LEVEL CATEGORY ------------------------------
+    // ***********************************************************************
+
     public function indexMidLevel(): View
     {
-        return view ('admin.categories.midlevel.index');
+        $midlevels = MidLevelCategory::all();
+        $i=1;
+        return view ('admin.categories.midlevel.index')->with('midlevels', $midlevels)->with('i', $i);
     }
 
     public function createMidLevel(): View
     {
-        return view ('admin.categories.midlevel.create');
+        $toplevelcategories = TopLevelCategory::all();
+        return view ('admin.categories.midlevel.create')->with('toplevelcategories', $toplevelcategories);
     }
 
-    public function editMidLevel(): View
-    {
-        return view ('admin.categories.midlevel.edit');
+    public function storeMidLevel(Request $request){
+        $this->validate($request, [
+            'tcat_id'   => 'required',
+            'mcat_name' => 'required'
+        ]);
+
+        $midlevel = new MidLevelCategory();
+        $midlevel->tcat_id = $request->input('tcat_id');
+        $midlevel->mcat_name = $request->input('mcat_name');
+        $midlevel->save();
+
+        return back()->with('status', 'La catégorie a été ajoutée avec succès !');
     }
+
+    public function editMidLevel($id): View {
+        $midlevel = MidLevelCategory::find($id);
+        return view ('admin.categories.midlevel.edit')->with('midlevel', $midlevel);
+    }
+
+    public function updateMidLevel(Request $request, $id){
+        $this->validate($request, [
+            'tcat_id'   => 'required',
+            'mcat_name' => 'required'
+        ]);
+
+        $midlevel = MidLevelCategory::find($id);
+        $midlevel->tcat_id = $request->input('tcat_id');
+        $midlevel->mcat_name = $request->input('mcat_name');
+        $midlevel->update();
+
+        return back()->with('status', 'La catégorie a été mise à jour avec succès !');
+    }
+
+
+    public function deleteMidLevel($id){
+        $midlevel = MidLevelCategory::find($id);
+        $midlevel->delete();
+
+        return back()->with('status', 'La catégorie a été effacée avec succès !');
+    }
+
+    // ***********************************************************************
+    // --------------------- END LEVEL CATEGORY ------------------------------
+    // ***********************************************************************
 
     public function indexEndLevel(): View
     {
